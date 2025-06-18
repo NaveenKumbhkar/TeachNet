@@ -20,6 +20,7 @@ exports.sendOTP = async (req, res) => {
 
         //if user alreay exist then send response
         if (checkUserPresent) {
+            //console.log("User is already exist.....");
             return res.status(401).json({
                 success:false,
                 message:"user is already exist"
@@ -74,7 +75,7 @@ exports.signUp = async(req,res) => {
     try{
         //feach data from request body
         const {firstName,lastName,email,password,confirmPassword,otp,accountType,contactNumber} = req.body;
-
+        //console.log("Server Reponse........");
         //validation ki required filed fill ho
         if(!firstName || !lastName || !email || !password || !confirmPassword || !otp){
             return res.status(401).json({
