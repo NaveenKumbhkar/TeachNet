@@ -70,6 +70,7 @@ exports.deleteAccount = async(req,res) => {
         //get user id
         const id = req.user.id;
         const userDetails = await User.findById(id);
+        console.log("User in deleteAccount controller = ",userDetails);
 
         //validation
         if(!userDetails){
@@ -84,7 +85,7 @@ exports.deleteAccount = async(req,res) => {
         });
 
         //HW unenroll student from eroll sturdent list
-        for(const courseId of userDetails.courses){
+        for(const courseId of userDetails.course){
             await Course.findOneAndUpdate(
                 courseId,
                 { $pull: { studentsEnrolled:id } },

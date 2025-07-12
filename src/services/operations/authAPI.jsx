@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { authApis } from "../apis";
 import { setUser } from "../../slices/profileSlice";
+import { resetCart } from "../../slices/cartSlice";
 
 const { SENDOTP_API,
     RESETPASSTOKEN_API,
@@ -19,8 +20,8 @@ export const sendOtp = (email, navigate) => {
         try {
             const response = await apiConnector("POST", SENDOTP_API, { email, checkUserPresent: true, });
 
-            console.log("SendOtp api response = ", response);
-            console.log(response.data.success);
+            //console.log("SendOtp api response = ", response);
+            //console.log(response.data.success);
 
             if (!response.data.success) {
                 toast.error(response.data.message);
@@ -32,7 +33,7 @@ export const sendOtp = (email, navigate) => {
         }
         catch (error) {
             console.log("sendotp api error = ", error);
-            toast.error("Could not send otp");
+            toast.error(error.response.data.message);
         }
         dispatch(setLoading(false));
         toast.dismiss(toastId);
@@ -45,7 +46,7 @@ export const getPasswordResetToken = (email, setEmailSend) => {
         try {
             const response = await apiConnector("POST", RESETPASSTOKEN_API, { email });
 
-            console.log("Reset password token response = ", response);
+            //console.log("Reset password token response = ", response);
 
             if (!response.data.success) {
                 throw new Error(response.data.message);
@@ -73,7 +74,7 @@ export const resetPassword = (password, confirmPassword, token, navigate) => {
             else {
                 const response = await apiConnector("POST", RESETPASSWORD_API, { password, confirmPassword, token });
 
-                console.log("Reset api response = ", response);
+                //console.log("Reset api response = ", response);
 
                 if (!response.data.success) {
                     throw new Error(response.data.message);
@@ -106,7 +107,7 @@ export const signup = (accountType,
 
             const response = await apiConnector("POST", SIGNUP_API, { accountType, firstName, lastName, email, password, confirmPassword, otp, });
 
-            console.log("signup response = ", response);
+            //console.log("signup response = ", response);
 
             if (!response.data.success) {
                 throw new Error(response.data.message);
@@ -118,7 +119,7 @@ export const signup = (accountType,
         catch (error) {
             //console.log("data send to API is = ",firstName," ", lastName," ", email," ", password," ", confirmPassword," ", otp);
             console.log("Failed to signup...");
-            toast.error("Failed to signup");
+            toast.error(error.response.data.message);
         }
         dispatch(setLoading(false));
         toast.dismiss(toastId);
@@ -133,7 +134,7 @@ export const login = (email, password, navigate) => {
         try {
             const response = await apiConnector("POST", LOGIN_API, { email, password });
 
-            console.log("LOGIN API RESPONSE = ", response);
+           // console.log("LOGIN API RESPONSE = ", response);
 
             if (!response.data.success) {
                 throw new Error(response.data.message);
@@ -163,7 +164,7 @@ export const login = (email, password, navigate) => {
         }
         catch (error) {
             console.error("login failed..." , error);
-            toast.error("Login failed");
+            toast.error(error.response.data.message);
         }
         dispatch(setLoading(false));
         toast.dismiss(toastId);

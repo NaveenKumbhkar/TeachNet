@@ -3,7 +3,8 @@ import { Navigate } from "react-router-dom";
 
 
 const OpenRoute = ({children}) => {
-    const token =  null//useSelector(state => state.auth);
+    const {token} =  useSelector(state => state.auth);
+    //console.log("Token inside openRoute = ",token);
 
     if(token === null)
         return children

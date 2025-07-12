@@ -4,7 +4,7 @@ import navbarLinks from "../../data/navbar-links";
 import { useLocation , matchPath , Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import ProfileDropDown from "../core/Auth/ProfileDropDown";
+import ProfileDropdown from "../core/Auth/ProfileDropdown";
 import { apiConnector } from "../../services/apiConnector";
 import { categories } from "../../services/apis";
 import { useState } from "react";
@@ -40,7 +40,7 @@ const Navbar = () => {
     }
     return (
         <div className="bg-richblack-900 border-b border-richblack-700">
-            <div className="w-11/12 mx-auto flex justify-between py-3 px-10 items-center">
+            <div className="w-11/12 mx-auto flex justify-between py-1.5 px-10 items-center">
                 <div>
                     <Link to="/">
                         <img src={logo} width={150} height={50} loading="lazy" />
@@ -120,7 +120,7 @@ const Navbar = () => {
                         )
                     }
                     {
-                        token !== null && <ProfileDropDown/>
+                        token !== null && <ProfileDropdown/>
                     }
                 </div>
             </div>

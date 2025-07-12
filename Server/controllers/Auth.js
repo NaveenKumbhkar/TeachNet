@@ -2,7 +2,7 @@ const User = require("../models/User");
 const OTP = require("../models/OTP");
 const otpGenerate = require("otp-generator");
 const jwt = require("jsonwebtoken");
-const {mailSender} = require("../utils/mailSender");
+const mailSender = require("../utils/mailSender");
 const Profile = require("../models/Profile");
 const bcrypt = require("bcryptjs");
 const {passwordUpdated } = require("../mail/templates/passwordUpdate");
@@ -23,7 +23,7 @@ exports.sendOTP = async (req, res) => {
             //console.log("User is already exist.....");
             return res.status(401).json({
                 success:false,
-                message:"user is already exist"
+                message:"User is already exist"
             })
         }
 
@@ -235,7 +235,7 @@ exports.changePassword = async(req,res) => {
         const { oldPassword, newPassword } = req.body;
 
         //validation
-        const isPasswordMatch = await bcrpty.compare(oldPassword,userDetails.password)
+        const isPasswordMatch = await bcrypt.compare(oldPassword,userDetails.password)
         if(!isPasswordMatch){
             return res.status(401).json({
                 success:false,
@@ -264,6 +264,7 @@ exports.changePassword = async(req,res) => {
             console.log("Email response after sending email = ",emailResponse);
         }
         catch(error){
+            //console.log("mail send error = ",error.message)
             return res.status(500).json({
                 success:false,
                 message:"Error occurred while sending email to user",

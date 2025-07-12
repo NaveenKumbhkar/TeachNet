@@ -75,7 +75,7 @@ const contactUsEmail = (email,firstName,lastName,message,phoneNo,countryCode) =>
                 <p>Here are the details you provided:</p>
                 <p>Name: ${firstName} ${lastName}</p>
                 <p>Email: ${email}</p>
-                <p>Phone Number: ${phoneNo}</p>
+                <p>Phone Number: ${countryCode} ${phoneNo}</p>
                 <p>Message: ${message}</p>
                 <p>We appreciate your interest and will get back to you shortly. </p>
             </div>

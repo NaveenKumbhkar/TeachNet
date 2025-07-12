@@ -34,7 +34,7 @@ const SignUpForm = () => {
     const handleOnSubmit = (event) => {
         event.preventDefault();
         if (password !== confirmPassword) {
-            toast.error("Password do not match");
+            toast.error("Both passwords are different");
             return;
         }
 

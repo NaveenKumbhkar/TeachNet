@@ -6,6 +6,8 @@ import BannerImgThree from "../assets/Images/aboutus3.webp";
 import ourFoundingImg from "../assets/Images/foundingStory.png";
 import StatusComponent from "../components/core/AboutPage/StatusComponent";
 import LearningGrid from "../components/core/AboutPage/LearningGrid";
+import ContactFormSection from "../components/core/AboutPage/ContactFormSection";
+import Footer from "../components/Comman/Footer";
 
 const About = () => {
     return (
@@ -116,7 +118,18 @@ const About = () => {
             <StatusComponent/>
             <section className="bg-richblack-900 w-11/12 max-w-maxContent mx-auto mt-20 text-white flex flex-col justify-between gap-10">
                 <LearningGrid/>
+                <ContactFormSection/>
             </section>
+
+
+            <div className="w-11/12 mx-auto max-w-maxContent flex flex-col items-center justify-between py-20 gap-8 bg-richblack-900 text-white">
+                <h1 className="text-4xl font-semibold text-richblack-5 mt-8">
+                    Reviews from other learners
+                </h1>
+                {/* Review slider */}
+            </div>
+
+            <Footer/>
         </div>
     )
 }
