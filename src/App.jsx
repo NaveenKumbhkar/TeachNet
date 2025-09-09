@@ -18,13 +18,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import SettingsComp from './components/core/Dashboard/Settings/SettingsComp';
 import EnrolledCourses from './components/core/Dashboard/EnrolledCourses';
 import CartComp from './components/core/Dashboard/Cart/CartComp';
+import {ACCOUNT_TYPE} from './utils/constants';
+import AddCourseComp from './components/core/Dashboard/AddCourse/AddCourseComp';
+import MyCourses from "./components/core/Dashboard/MyCourses";
+import EditCourse from './components/core/Dashboard/EditCourse';
+// import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 
 function App() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //const { user } = useSelector(state => state.profile);
+  const { user } = useSelector(state => state.profile);
 
   //const {token} = useSelector(state => state.auth);
   //const {cart} = useSelector(state => state.cart);
@@ -88,9 +93,27 @@ function App() {
         >
           <Route path="dashboard/my-profile" element={<MyProfile/>} />
           <Route path="dashboard/settings" element={<SettingsComp/>} />
-          <Route path='dashboard/enrolled-courses' element={<EnrolledCourses/>}/>
-          <Route path="dashboard/cart" element={<CartComp/>}/>
+        
+        {
+        user?.accountType === ACCOUNT_TYPE.STUDENT && (
+          <>
+          <Route path="dashboard/cart" element={<CartComp />} />
+          <Route path="dashboard/enrolled-courses" element={<EnrolledCourses />} />
+          </>
+        )
+      }
 
+      {
+        user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+          <>
+          {/* <Route path="dashboard/instructor" element={<Instructor />} /> */}
+          <Route path="dashboard/add-course" element={<AddCourseComp />} />
+          <Route path="dashboard/my-courses" element={<MyCourses />} />
+          <Route path="dashboard/edit-course/:courseId" element={<EditCourse />} />
+          
+          </>
+        )
+      }
         </Route>  
 
         

@@ -142,7 +142,7 @@ export const login = (email, password, navigate) => {
 
             toast.success("Login successfully");
 
-            //console.log("before token set token = ",response.data.token);
+            console.log("before token set token = ",response.data.token);
             dispatch(setToken(response.data.token));
 
             //console.log("before userImage generating");

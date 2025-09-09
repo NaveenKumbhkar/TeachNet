@@ -66,7 +66,7 @@ router.post("/deleteSection",auth,isInstructor,deleteSection);
 //edit sub-section
 router.post("/updateSubSection",auth,isInstructor,updateSubSection);
 //delete sub-section
-router.delete("/deleteSubSection",auth,isInstructor,deleteSubSection);
+router.post("/deleteSubSection",auth,isInstructor,deleteSubSection);
 //add sub-section to section
 router.post("/addSubSection",auth,isInstructor,createSubSection);
 //get all registered course
@@ -74,7 +74,7 @@ router.get("/getAllCourses",showAllCourses);
 //get details for a specific course
 router.get("/getCourseDetails",getCourseDetails);
 //get detials for a specific course
-router.get("/getFullCourseDetails",auth,getFullCourseDetails);
+router.post("/getFullCourseDetails",auth,getFullCourseDetails);
 //edit course 
 router.post("/editCourse",auth,isInstructor,editCourse);
 //get all courses for instructor

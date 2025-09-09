@@ -9,7 +9,7 @@ exports.auth = async(req,res,next) => {
         const token = req.cookies.token 
                         || req.body.token || req.header("Authorization").replace("Bearer ","");
 
-        console.log("Token in auth middelwares one = ",token);
+        //console.log("Token in auth middelwares one = ",token);
         //if token missing then return response
         if(!token){
             return res.status(403).json({
@@ -17,10 +17,10 @@ exports.auth = async(req,res,next) => {
                 message:"Token is missing",
             })
         }
-        console.log("Token in auth middelwares two = ",token);
-        //token vafication
+        //console.log("Token in auth middelwares two = ",token);
+        //token verification
         try{
-            const decode = await jwt.verify(token,process.env.JWT_SECRET);
+            const decode = jwt.verify(token,process.env.JWT_SECRET);
             console.log(decode);
             req.user = decode;
         }

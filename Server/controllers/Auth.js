@@ -220,7 +220,7 @@ exports.login = async(req,res) => {
         console.log("Error while user login = ",error);
         return res.status(500).json({
             success:false,
-            message:"Login failure plase try again",
+            message:"Login failed please try again",
         })
     }
 };

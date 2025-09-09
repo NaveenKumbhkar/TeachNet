@@ -32,13 +32,20 @@ exports.createCourse = async (req, res) => {
         const thumbnail = req.files.thumbnailImage;
 
         //convert tag and instruction from stringified array to array
-        console.log("tag value is = ",typeof(_tag));
+        //console.log("tag value is = ",typeof(_tag));
         const tag = Array.isArray(_tag) ?  JSON.parse(_tag) : _tag ;
         const instructions = Array.isArray(_instructions) ? JSON.parse(_instructions) : _instructions;
 
-        console.log("tag = ",tag);
-        console.log("instructions = ",instructions);
+        // console.log("tag = ",tag);
+        // console.log("instructions = ",instructions);
 
+        // console.log("course Name = ",courseName);
+        // console.log("courseDescription = ",courseDescription);
+        // console.log("whatWillYouLearn = ",whatWillYouLearn);
+        // console.log("price = ",price);
+        // console.log("tag length = ",tag.length);
+        // console.log("category = ",category);
+        // console.log("instructions.length = ",instructions.length);
 
         //validation
         if (!courseName || 
@@ -62,7 +69,7 @@ exports.createCourse = async (req, res) => {
 
         //check for instructor
         const instructorDetails = await User.findById(userId , {accountType:"Instructor"});
-        console.log("Instructor Detials = ", instructorDetails);
+        //console.log("Instructor Detials = ", instructorDetails);
 
         if (!instructorDetails) {
             return res.status(401).json({
@@ -167,6 +174,7 @@ exports.editCourse = async(req,res) => {
             }
         }
 
+        //course.instructor = req.user.id;
         await course.save();
 
         const updatedCourse = await Course.findOne({_id:courseId})
@@ -186,10 +194,11 @@ exports.editCourse = async(req,res) => {
             })
             .exec();
 
+        //console.log("Update course inside edit course controller : ",updatedCourse);    
         return res.status(200).json({
             success:true,
             message:"Course updated successfully",
-            date:updatedCourse
+            data:updatedCourse
         })
     }
     catch(error){
@@ -293,13 +302,17 @@ exports.getCourseDetails = async (req, res) => {
 exports.getFullCourseDetails = async(req,res) => {
     try{
         //get course id and user id from request body
+        //console.log("Welcome inside course/getCourseDetails one");
+        //const { courseId, id: userId } = req.query;
         const { courseId } = req.body;
         const userId = req.body.id;
+
+        //console.log("Welcome inside course/getCourseDetails two = ",courseId);
 
         //find course details
         const courseDetails = await Course.findOne({_id:courseId})
            .populate({
-            path:"instructor",
+            path:"Instructor",
             populate:{
                 path:"additionalDetails",
             },
@@ -314,13 +327,17 @@ exports.getFullCourseDetails = async(req,res) => {
            })
            .exec();
 
+        //console.log("Welcome inside course/getCourseDetails three = ",courseDetails);   
+
         //find course progress
         let CourseProgressCount = await CourseProgress.findOne({
             courseID:courseId,
             userId:userId,
         })
 
-        console.log("courseProgressCount = ",CourseProgressCount);
+        //console.log("Welcome inside course/getCourseDetails four");
+
+        //console.log("courseProgressCount = ",CourseProgressCount);
 
         //validation of course Details
         if(!courseDetails){
@@ -367,7 +384,7 @@ exports.getInstructorCourses = async(req,res) => {
         const instructorId = req.body.id;
 
         //find instructor details
-        const instructorDetails = await Course.find({Instructor:instructorId})
+        const instructorDetails = await Course.find({instructor:instructorId})
             .sort({ createdAt : -1})
 
         //validation
@@ -380,10 +397,11 @@ exports.getInstructorCourses = async(req,res) => {
 
 
         //return response
+        //console.log("Instructor courses insid course controller = ",instructorDetails);
         return res.status(200).json({
             success:true,
             message:"get instructor courses successfully",
-            data:instructorCourses
+            data:instructorDetails
         })
     }
     catch(error){
@@ -411,15 +429,17 @@ exports.deleteCourse = async(req,res) => {
         }
 
         //unerolled students from course
-        const studentsEnrolled = Course.studentsEnrolled;
-        for(const studentId of studentsEnrolled){
-            await User.findByIdAndUpdate(studentId,{
-                $pull:{course:courseId},
-            })
-        }
+        const studentsEnrolled = Course.studentsEnrolled || [];
+        
+            for(const studentId of studentsEnrolled){
+                await User.findByIdAndUpdate(studentId,{
+                    $pull:{course:courseId},
+                })
+            }
+
 
         //delete sections and subsections
-        const courseSections = Course.courseContent
+        const courseSections = Course.courseContent || [] ;
         for(const sectionId of courseSections){
             //delete sub section of the section
             const section = await Section.findById(sectionId);
