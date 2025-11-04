@@ -72,7 +72,7 @@ router.post("/addSubSection",auth,isInstructor,createSubSection);
 //get all registered course
 router.get("/getAllCourses",showAllCourses);
 //get details for a specific course
-router.get("/getCourseDetails",getCourseDetails);
+router.post("/getCourseDetails",getCourseDetails);
 //get detials for a specific course
 router.post("/getFullCourseDetails",auth,getFullCourseDetails);
 //edit course 

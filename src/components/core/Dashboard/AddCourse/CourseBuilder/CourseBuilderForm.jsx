@@ -57,9 +57,9 @@ export default function CourseBuilderForm() {
         token
       )
     }
-    console.log("section result", result);
+    //console.log("section result", result);
     if (result) {
-      console.log("section result", result)
+      //console.log("section result", result)
       dispatch(setCourse(result))
       setEditSectionName(null)
       setValue("sectionName", "")

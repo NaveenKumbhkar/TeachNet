@@ -33,7 +33,7 @@ const cartSlice = createSlice({
         },
         removeToCart(state,actions){
             const course = actions.payload;
-            const index = state.cart.findIndex((item) => item._id === course._id);
+            const index = state.cart.findIndex((item) => item._id === course);
 
             if(index >= 0){
                 state.totalItems--;

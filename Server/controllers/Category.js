@@ -69,11 +69,12 @@ exports.categoryPageDetails = async(req,res) => {
         const selectedCategory = await Category.findById(categoryId)
             .populate({
                 path:"courses",
-                match:{status:"published"},
-                populate:"ratingAndReviews",
+                match:{status:"Published"},
+                //populate:"ratingAndReviews",
             })
             .exec();
 
+        console.log("Selected Category = ",selectedCategory);
         //validation
         if(!selectedCategory){
             return res.status(401).json({
@@ -91,7 +92,7 @@ exports.categoryPageDetails = async(req,res) => {
         }
 
         //get courses for different category
-        const categoriesExceptSelected = await Category.find({_id:{$en:categoryId}});
+        const categoriesExceptSelected = await Category.find({_id:{$ne:categoryId}});
         const differentCategory = await Category.findOne(
             categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]._id
         )
@@ -107,7 +108,7 @@ exports.categoryPageDetails = async(req,res) => {
                 path:"courses",
                 match:{status:"Published"},
                 populate:{
-                    path:"instructor",
+                    path:"Instructor",
                 },
             })
             .exec();

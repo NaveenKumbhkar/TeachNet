@@ -255,7 +255,7 @@ exports.instructorDashboard = async(req,res) => {
                 totalStudentsEnrolled,
                 totalAmountGenerated,
             }
-
+            
             return courseDataWithStats;
         })
 

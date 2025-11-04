@@ -1,4 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
+import ReactStars from "react-rating-stars-component";
+import { FaStar } from "react-icons/fa"
+import { RiDeleteBin6Line } from "react-icons/ri"
+import { removeToCart } from "../../../../slices/cartSlice"
 
 
 const CartCourses = () => {
@@ -9,7 +13,7 @@ const CartCourses = () => {
             {
                 cart.map((course, index) => (
                     <div
-                        key={course._id}
+                        key={course._id || index}
                         className={`flex w-full flex-wrap items-start justify-between gap-6 
                             ${index !== cart.length - 1 && "border-b border-b-richblack-400 pb-6"
                             } ${index !== 0 && "mt-6"} `}
@@ -45,7 +49,7 @@ const CartCourses = () => {
                         </div>
                         <div className="flex flex-col items-end space-y-2">
                             <button
-                                onClick={() => dispatch(removeFromCart(course._id))}
+                                onClick={() => dispatch(removeToCart(course._id))}
                                 className="flex items-center gap-x-1 rounded-md border border-richblack-600 bg-richblack-700 py-3 px-[12px] text-pink-200"
                             >
                                 <RiDeleteBin6Line />
