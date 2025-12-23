@@ -248,55 +248,118 @@ exports.showAllCourses = async (req, res) => {
 
 //get course details
 exports.getCourseDetails = async (req, res) => {
-    try {
-        //get course id from request body
-        const { courseId } = req.body;
+  try {
+    const { courseId } = req.body
+    const courseDetails = await Course.findOne({
+      _id: courseId,
+    })
+      .populate({
+        path: "Instructor",
+        populate: {
+          path: "additionalDetails",
+        },
+      })
+      .populate("category")
+      .populate("ratingAndReview")
+      .populate({
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+          select: "-videoUrl",
+        },
+      })
+      .exec()
 
-        //find course details
-        const courseDetails = await Course.find({ _id: courseId })
-            .populate({ path: "Instructor", populate: { path: "additionalDetails" } })
-            .populate("category")
-            //.populate("ratingAndReview")
-            .populate({ path: "courseContent", populate: { path: "subSection", } })
-            .exec();
-
-        //validation
-        if (!courseDetails) {
-            return res.status(403).json({
-                success: false,
-                message: "Course details is not found"
-            })
-        }
-
-        //count total time durtion
-        // let totalDurationInSeconds = 0 ;
-        // courseDetails.courseContent.forEach((constent) => {
-        //     constent.SubSection.forEach((subSection) => {
-        //         const timeDurationInSeconds = parseInt(subSection.timeDuration);
-        //         totalDurationInSeconds += timeDurationInSeconds
-        //     })
-        // })
-
-        // const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
-
-        //retrun response
-        return res.status(200).json({
-            success: true,
-            message: "course details founded successfully",
-            data:{
-                courseDetails,
-                //totalDuration,
-            },
-        })
+    if (!courseDetails) {
+      return res.status(400).json({
+        success: false,
+        message: `Could not find course with id: ${courseId}`,
+      })
     }
-    catch (error) {
-        console.log("Error occures while fatching the course details = ", error);
-        return res.status(500).json({
-            success: false,
-            message: "Error occures while feachig the details of course",
-        })
-    }
+
+    // if (courseDetails.status === "Draft") {
+    //   return res.status(403).json({
+    //     success: false,
+    //     message: `Accessing a draft course is forbidden`,
+    //   });
+    // }
+
+    let totalDurationInSeconds = 0
+    courseDetails.courseContent.forEach((content) => {
+      content.subSection.forEach((subSection) => {
+        const timeDurationInSeconds = parseInt(subSection.timeDuration)
+        totalDurationInSeconds += timeDurationInSeconds
+      })
+    })
+
+    const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
+
+    return res.status(200).json({
+      success: true,
+      data: {
+        courseDetails,
+        totalDuration,
+      },
+    })
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    })
+  }
 }
+
+
+// exports.getCourseDetails = async (req, res) => {
+//     try {
+//         //get course id from request body
+//         const { courseId } = req.body;
+
+//         //find course details
+//         const courseDetails = await Course.find({ _id: courseId })
+//             .populate({ path: "Instructor", populate: { path: "additionalDetails" } })
+//             .populate("category")
+//             //.populate("ratingAndReview")
+//             .populate({ path: "courseContent", populate: { path: "subSection", } })
+//             .exec();
+
+//         //validation
+//         if (!courseDetails) {
+//             return res.status(403).json({
+//                 success: false,
+//                 message: "Course details is not found"
+//             })
+//         }
+
+//         //count total time durtion
+//         // let totalDurationInSeconds = 0 ;
+//         // courseDetails.courseContent.forEach((constent) => {
+//         //     constent.SubSection.forEach((subSection) => {
+//         //         const timeDurationInSeconds = parseInt(subSection.timeDuration);
+//         //         totalDurationInSeconds += timeDurationInSeconds
+//         //     })
+//         // })
+
+//         // const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
+
+//         //retrun response
+//         return res.status(200).json({
+//             success: true,
+//             message: "course details founded successfully",
+//             data:{
+//                 courseDetails,
+//                 //totalDuration,
+//             },
+//         })
+//     }
+//     catch (error) {
+//         console.log("Error occures while fatching the course details = ", error);
+//         return res.status(500).json({
+//             success: false,
+//             message: "Error occures while feachig the details of course",
+//         })
+//     }
+// }
 
 
 exports.getFullCourseDetails = async(req,res) => {
@@ -364,8 +427,8 @@ exports.getFullCourseDetails = async(req,res) => {
             data : {
                 courseDetails,
                 totalDuration,
-                completedVideos: CourseProgressCount?.completedVideos
-                   ? CourseProgressCount?.completedVideos : [],
+                completedVideos: CourseProgressCount?.completedVideo
+                   ? CourseProgressCount?.completedVideo : [],
             },
         });
     }
@@ -381,10 +444,10 @@ exports.getFullCourseDetails = async(req,res) => {
 exports.getInstructorCourses = async(req,res) => {
     try{
         //get instructor id
-        const instructorId = req.body.id;
+        const instructorId = req.user.id;
 
         //find instructor details
-        const instructorDetails = await Course.find({instructor:instructorId})
+        const instructorDetails = await Course.find({Instructor:instructorId})
             .sort({ createdAt : -1})
 
         //validation
@@ -397,7 +460,7 @@ exports.getInstructorCourses = async(req,res) => {
 
 
         //return response
-        //console.log("Instructor courses insid course controller = ",instructorDetails);
+        console.log("Instructor courses insid course controller = ",instructorDetails);
         return res.status(200).json({
             success:true,
             message:"get instructor courses successfully",

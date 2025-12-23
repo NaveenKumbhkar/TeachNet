@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import ProgressBar from "@ramonak/react-progress-bar"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom";
 import { getUserEnrolledCourses } from "../../../services/operations/profileAPIs";
@@ -14,6 +15,7 @@ const EnrolledCourses = () => {
     const getEnrolledCourses = async () => {
         try {
             const result = await getUserEnrolledCourses(token);
+            //console.log("Enrolled courses : ",result)
             setEnrolledCourses(result);
         }
         catch (error) {

@@ -16,6 +16,8 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
+  //console.log("Course inside CourseDetailsCard = ",course);
+
   const {
     thumbnail: ThumbnailImage,
     price: CurrentPrice,

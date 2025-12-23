@@ -41,7 +41,11 @@ const {
 } = require("../controllers/RatingAndReview");
 
 //import course progress controller
-const {updateCourseProgress} = require("../controllers/courseProgress");
+const {
+    updateCourseProgress,
+    getCompletedSubSectionsArray,
+    getProgressPercentage,
+} = require("../controllers/CourseProgress");
 
 //import middlewares
 const {
@@ -83,6 +87,10 @@ router.get("/getInstructorCourses",auth,isInstructor,getInstructorCourses);
 router.delete("/deleteCourse",deleteCourse);
 //update course progress
 router.post("/updateCourseProgress",auth,isStudent,updateCourseProgress);
+//------------getCompletedSubSectionsArray
+router.post("/getCompletedSubSectionsArray/:courseId",auth,isStudent,getCompletedSubSectionsArray);
+//------------getProgressPercentage
+//router.post("/getProgressPercentage",auth,isStudent,getProgressPercentage);
 
 //                             ****************************************
 //******************************  Categories routes (only for Admin)  ******************************

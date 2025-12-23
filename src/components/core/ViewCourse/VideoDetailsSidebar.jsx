@@ -37,6 +37,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseSectionData, courseEntireData, location.pathname])
+  //console.log("completedLectures = ",completedLectures);
 
   return (
     <>

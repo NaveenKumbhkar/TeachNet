@@ -73,6 +73,7 @@ exports.capturePayment = async (req, res) => {
 
 // verify the payment
 exports.verifyPayment = async (req, res) => {
+  console.log("welcome to inside controllers/payments.js");
   const razorpay_order_id = req.body?.razorpay_order_id
   const razorpay_payment_id = req.body?.razorpay_payment_id
   const razorpay_signature = req.body?.razorpay_signature
@@ -140,6 +141,7 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 
 // enroll the student in the courses
 const enrollStudents = async (courses, userId, res) => {
+  console.log("cours Id and user Id inside enrollStudents functions = ",courses," ",userId);
   if (!courses || !userId) {
     return res
       .status(400)
@@ -151,7 +153,7 @@ const enrollStudents = async (courses, userId, res) => {
       // Find the course and enroll the student in it
       const enrolledCourse = await Course.findOneAndUpdate(
         { _id: courseId },
-        { $push: { studentsEnroled: userId } },
+        { $push: { studentsEnrolled: userId } },
         { new: true }
       )
 
@@ -172,7 +174,7 @@ const enrollStudents = async (courses, userId, res) => {
         userId,
         {
           $push: {
-            courses: courseId,
+            course: courseId,
             courseProgress: courseProgress._id,
           },
         },

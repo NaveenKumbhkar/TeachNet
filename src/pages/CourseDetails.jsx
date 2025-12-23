@@ -45,7 +45,10 @@ function CourseDetails() {
   // Avg Review Count
   const [avgReviewCount, setAvgReviewCount] = useState(0)
   useEffect(() => {
-    const count = GetAvgRating(response?.data?.courseDetails?.ratingAndReviews)
+    //console.log("courseDetails =", response?.data?.courseDetails);
+    //console.log("ratingAndReview =",response?.data?.courseDetails?.ratingAndReview);
+
+    const count = GetAvgRating(response?.data?.courseDetails?.ratingAndReview)
     setAvgReviewCount(count)
   }, [response])
 
@@ -81,7 +84,7 @@ function CourseDetails() {
     return <Error />
   }
 
-  console.log("Response inside courseDrtails = ",response);
+  //console.log("Response inside courseDrtails = ",response);
 
   const {
     _id: course_id,
@@ -91,11 +94,11 @@ function CourseDetails() {
     price,
     whatYouWillLearn,
     courseContent,
-    ratingAndReviews,
+    ratingAndReview,
     Instructor,
     studentsEnrolled,
     createdAt,
-  } = response?.data?.courseDetails[0]
+  } = response?.data?.courseDetails
 
   const handleBuyCourse = () => {
     if (token) {
@@ -151,7 +154,7 @@ function CourseDetails() {
                   Review_Count={Number.isNaN(avgReviewCount) ? 0 : avgReviewCount}
                   Star_Size={24}
                 />
-                <span>{`(${ratingAndReviews?.length || 0} reviews)`}</span>
+                <span>{`(${ratingAndReview?.length || 0} reviews)`}</span>
                 <span>{`${studentsEnrolled?.length || 0} students enrolled`}</span>
               </div>
               <div>
@@ -181,7 +184,7 @@ function CourseDetails() {
           {/* Courses Card */}
           <div className="right-[1rem] top-[60px] mx-auto hidden min-h-[600px] w-1/3 max-w-[410px] translate-y-24 md:translate-y-0 lg:absolute  lg:block">
             <CourseDetailsCard
-              course={response?.data?.courseDetails[0]}
+              course={response?.data?.courseDetails}
               setConfirmationModal={setConfirmationModal}
               handleBuyCourse={handleBuyCourse}
             />

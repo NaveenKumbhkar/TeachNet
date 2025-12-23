@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    capturePayments, 
+    capturePayment, 
     verifyPayment, 
     sendPaymentSuccessEmail, 
 } = require("../controllers/Payments");
@@ -15,7 +15,7 @@ const {
     isAdmin,
 } = require("../middelwares/auth");
 
-router.post("/capturePayment",auth,isStudent,capturePayments);
+router.post("/capturePayment",auth,isStudent,capturePayment);
 router.post("/verifiyPayment",auth,isStudent,verifyPayment);
 router.post("/sendPaymentSuccessEmail",auth,isStudent,sendPaymentSuccessEmail);
 

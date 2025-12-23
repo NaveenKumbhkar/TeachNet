@@ -1,3 +1,215 @@
+// import React, { useEffect, useRef, useState } from "react"
+// import { useDispatch, useSelector } from "react-redux"
+// import { useNavigate, useParams, useLocation } from "react-router-dom"
+// import ReactPlayer from "react-player"
+
+// import { markLectureAsComplete } from "../../../services/operations/courseDetailsAPI"
+// import { updateCompletedLectures } from "../../../slices/viewCourseSlice"
+// import IconBtn from "../../Comman/IconBtn"
+
+// const VideoDetails = () => {
+//   const { courseId, sectionId, subSectionId } = useParams()
+//   const navigate = useNavigate()
+//   const location = useLocation()
+//   const playerRef = useRef(null)
+//   const dispatch = useDispatch()
+
+//   const { token } = useSelector((state) => state.auth)
+//   const { courseSectionData, courseEntireData, completedLectures } =
+//     useSelector((state) => state.viewCourse)
+
+//   const [videoData, setVideoData] = useState(null)
+//   const [previewSource, setPreviewSource] = useState("")
+//   const [videoEnded, setVideoEnded] = useState(false)
+//   const [loading, setLoading] = useState(false)
+
+//   // Load video info when route changes
+//   useEffect(() => {
+//     if (!courseSectionData.length) return
+
+//     const section = courseSectionData.find((sec) => sec._id === sectionId)
+//     if (!section) return
+
+//     const video = section.subSection.find((v) => v._id === subSectionId)
+
+//     setVideoData(video || null)
+//     setPreviewSource(courseEntireData?.thumbnail || "")
+//     setVideoEnded(false)
+//   }, [courseSectionData, courseEntireData, location.pathname, sectionId, subSectionId])
+
+//   // FIRST video of entire course?
+//   const isFirstVideo = () => {
+//     const currentSectionIndx = courseSectionData.findIndex(
+//       (data) => data._id === sectionId
+//     )
+
+//     const currentSubSectionIndx = courseSectionData[currentSectionIndx].subSection.findIndex(
+//       (data) => data._id === subSectionId
+//     )
+
+//     return currentSectionIndx === 0 && currentSubSectionIndx === 0
+//   }
+
+//   // LAST video of entire course?
+//   const isLastVideo = () => {
+//     const currentSectionIndx = courseSectionData.findIndex(
+//       (data) => data._id === sectionId
+//     )
+
+//     const section = courseSectionData[currentSectionIndx]
+//     const currentSubSectionIndx = section.subSection.findIndex(
+//       (data) => data._id === subSectionId
+//     )
+
+//     return (
+//       currentSectionIndx === courseSectionData.length - 1 &&
+//       currentSubSectionIndx === section.subSection.length - 1
+//     )
+//   }
+
+//   // Next video navigation
+//   const goToNextVideo = () => {
+//     const currentSectionIndx = courseSectionData.findIndex(
+//       (data) => data._id === sectionId
+//     )
+
+//     const section = courseSectionData[currentSectionIndx]
+//     const currentSubSectionIndx = section.subSection.findIndex(
+//       (data) => data._id === subSectionId
+//     )
+
+//     // same section next
+//     if (currentSubSectionIndx < section.subSection.length - 1) {
+//       const nextSubSectionId = section.subSection[currentSubSectionIndx + 1]._id
+//       navigate(`/view-course/${courseId}/section/${sectionId}/sub-section/${nextSubSectionId}`)
+//       return
+//     }
+
+//     // next section first video
+//     const nextSection = courseSectionData[currentSectionIndx + 1]
+//     navigate(
+//       `/view-course/${courseId}/section/${nextSection._id}/sub-section/${nextSection.subSection[0]._id}`
+//     )
+//   }
+
+//   // Previous video navigation
+//   const goToPrevVideo = () => {
+//     const currentSectionIndx = courseSectionData.findIndex(
+//       (data) => data._id === sectionId
+//     )
+
+//     const section = courseSectionData[currentSectionIndx]
+//     const currentSubSectionIndx = section.subSection.findIndex(
+//       (data) => data._id === subSectionId
+//     )
+
+//     // previous in same section
+//     if (currentSubSectionIndx > 0) {
+//       const prevSubSectionId = section.subSection[currentSubSectionIndx - 1]._id
+//       navigate(`/view-course/${courseId}/section/${sectionId}/sub-section/${prevSubSectionId}`)
+//       return
+//     }
+
+//     // previous section last video
+//     const prevSection = courseSectionData[currentSectionIndx - 1]
+//     const lastVideo = prevSection.subSection[prevSection.subSection.length - 1]
+
+//     navigate(
+//       `/view-course/${courseId}/section/${prevSection._id}/sub-section/${lastVideo._id}`
+//     )
+//   }
+
+//   const handleLectureCompletion = async () => {
+//     setLoading(true)
+
+//     const res = await markLectureAsComplete(
+//       { courseId, subsectionId: subSectionId },
+//       token
+//     )
+
+//     if (res) {
+//       dispatch(updateCompletedLectures(subSectionId))
+//     }
+
+//     setLoading(false)
+//   }
+//   console.log("URL = ",videoData?.videoUrl);
+//   return (
+//     <div className="flex flex-col gap-5 text-white">
+//       {/* Display image if no video exists */}
+//       {!videoData ? (
+//         <img
+//           src={previewSource}
+//           alt="Preview"
+//           className="h-full w-full rounded-md object-cover"
+//         />
+//       ) : (
+//         <div className="w-full aspect-video rounded-md overflow-hidden relative">
+//           <ReactPlayer
+//             ref={playerRef}
+//             url={videoData?.videoUrl}
+//             width="100%"
+//             height="100%"
+//             controls
+//             onEnded={() => setVideoEnded(true)}
+//           />
+
+//           {videoEnded && (
+//             <div className="absolute inset-0 z-20 grid place-content-center bg-black bg-opacity-70">
+//               {!completedLectures.includes(subSectionId) && (
+//                 <IconBtn
+//                   disabled={loading}
+//                   onclick={handleLectureCompletion}
+//                   text={loading ? "Loading..." : "Mark As Completed"}
+//                   customClasses="text-xl max-w-max px-4 mx-auto"
+//                 />
+//               )}
+
+//               {/* Rewatch */}
+//               <IconBtn
+//                 onclick={() => {
+//                   playerRef?.current?.seekTo(0)
+//                   setVideoEnded(false)
+//                 }}
+//                 text="Rewatch"
+//                 customClasses="text-xl max-w-max px-4 mx-auto mt-2"
+//               />
+
+//               {/* Navigation */}
+//               <div className="mt-10 flex justify-center gap-x-4 text-xl">
+//                 {!isFirstVideo() && (
+//                   <button
+//                     onClick={goToPrevVideo}
+//                     className="blackButton"
+//                   >
+//                     Prev
+//                   </button>
+//                 )}
+
+//                 {!isLastVideo() && (
+//                   <button
+//                     onClick={goToNextVideo}
+//                     className="blackButton"
+//                   >
+//                     Next
+//                   </button>
+//                 )}
+//               </div>
+//             </div>
+//           )}
+//         </div>
+//       )}
+
+//       <h1 className="mt-4 text-3xl font-semibold">{videoData?.title}</h1>
+//       <p className="pt-2 pb-6">{videoData?.description}</p>
+//     </div>
+//   )
+// }
+
+// export default VideoDetails
+
+
+
 import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
@@ -169,7 +381,7 @@ const VideoDetails = () => {
   }
 
   return (
-    <div className="flex flex-col gap-5 text-white">
+    <div className="flex flex-col gap-5 text-white aspect-video">
       {!videoData ? (
         <img
           src={previewSource}
@@ -177,9 +389,12 @@ const VideoDetails = () => {
           className="h-full w-full rounded-md object-cover"
         />
       ) : (
+        //<div className="aspect-video w-full flex justify-center items-center">
         <Player
           ref={playerRef}
-          aspectRatio="16:9"
+          fluid={false}
+          width="100%"
+          height="100%"
           playsInline
           onEnded={() => setVideoEnded(true)}
           src={videoData?.videoUrl}
@@ -237,6 +452,8 @@ const VideoDetails = () => {
             </div>
           )}
         </Player>
+        
+        //</div>
       )}
 
       <h1 className="mt-4 text-3xl font-semibold">{videoData?.title}</h1>

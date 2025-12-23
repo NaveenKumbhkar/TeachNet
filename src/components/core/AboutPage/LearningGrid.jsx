@@ -47,18 +47,18 @@ const LearningArray = [
 
 const LearningGrid = () => {
     return(
-        <div className="w-[350px] xl:w-fit grid grid-cols-1 xl:grid-cols-4 mb-12">
+        <div className="w-[350px] mx-auto md:w-fit grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mb-12">
             {
                 LearningArray.map((card,index) => {
                     return(
                         <div key={index} 
-                        className={`${ index === 0 && "xl:col-span-2"}
-                        ${ card.order % 2 === 0 && "xl:bg-richblack-800"}
+                        className={`${ index === 0 && "md:col-span-2"}
+                        ${ card.order % 2 === 0 && "md:bg-richblack-800"}
                         ${ card.order % 2 === 1 && "bg-richblack-700"}
-                        ${ card.order === 3 && "xl:col-start-2"} xl:h-[294px]`}>
+                        ${ card.order === 3 && "xl:col-start-2"} md:h-[294px]`}>
                           {
                             card.order < 0 ? (
-                              <div className="xl:w-[90%] flex flex-col gap-3 pb-10 xl:pb-0">
+                              <div className="md:w-[90%] flex flex-col gap-3 pb-10 xl:pb-0">
                                 <div className="text-4xl font-semibold">
                                   { card.heading }
                                   <HighLightText text={card.highlightText}/>

@@ -39,7 +39,7 @@ const About = () => {
             {/* Section 2 */}
             <section className="border-b border-richblack-700">
                 <div className="mx-auto w-11/12 max-w-maxContent flex flex-col gap-10 justify-between">
-                    <div className="h-[100px]"></div>
+                    <div className="sm:h-[25px] md:h-[50px] lg:h-[100px]"></div>
                     <div className="mx-auto text-xl md:text-4xl text-white font-semibold text-center py-5 pb-20 ">
                     We are passionate about revolutionizing the way we learn. Our
                     innovative platform
@@ -54,7 +54,7 @@ const About = () => {
                     unparalleled educational
                     experience.
                     </span> 
-                </div>
+                    </div>
                 </div>
             </section>
 
@@ -62,7 +62,7 @@ const About = () => {
             <section>
                 <div className="w-11/12 mx-auto max-w-maxContent flex flex-col justify-between gap-10 text-richblack-500">
                     <div className="flex flex-col items-center gap-10 lg:flex-row justify-between">
-                        <div className="flex flex-col gap-10 lg:w-[50%] my-24">
+                        <div className="flex flex-col gap-10 lg:w-[50%] my-12">
                             <h1 className="text-4xl font-semibold bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCB045] bg-clip-text text-transparent lg:w-[70%]">
                                 Our Founding Story
                             </h1>
@@ -87,7 +87,7 @@ const About = () => {
                         </div>
                     </div>
                     <div className="flex flex-col lg:flex-row lg:gap-10 justify-between items-center">
-                        <div className="flex flex-col my-24 gap-10 lg:w-[40%]">
+                        <div className="flex flex-col my-12 gap-10 lg:w-[40%]">
                             <h1 className="text-4xl font-semibold bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-transparent lg:w-[70%]">
                                 Our Vision
                             </h1>
@@ -99,7 +99,7 @@ const About = () => {
                                 learning experience.
                             </p>
                         </div>
-                        <div className="flex flex-col my-24 gap-10 lg:w-[40%]">
+                        <div className="flex flex-col my-12 gap-10 lg:w-[40%]">
                             <h1 className="text-4xl font-semibold bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] bg-clip-text text-transparent lg:w-[70%]">
                                 Our Mision
                             </h1>

@@ -4,12 +4,17 @@ const RatingAndReview = require("../models/RatingAndReview");
 //create rating
 exports.createRating = async(req,res) => {
     try{
-        const {rating , review , courseId , userId} = req.body;
+        const {rating , review , courseId} = req.body;
+
+        const userId = req.user.id;
+        console.log("Request data = ",rating," ",review," ",courseId," ",userId);
 
     //check user is enrolled or not
     const courseDetials = await Course.findOne({_id:courseId ,
-        studentEnrolled:{$elemMatch:{$eq:userId}}
+        studentsEnrolled:{$elemMatch:{$eq:userId}}
     });
+
+    console.log("courseDetails info inside ratingAndR controller = ",courseDetials);
     
     if(!courseDetials){
         return res.status(403).json({
@@ -19,6 +24,9 @@ exports.createRating = async(req,res) => {
     }
     //check user is already reviewed or not
     const alreadyReviewed = await RatingAndReview.findOne({user:userId,course:courseId});
+
+    console.log("alreadyReviewed info inside rar controller = ",alreadyReviewed);
+
     if(alreadyReviewed){
         return res.status(403).json({
             success:false,
@@ -27,12 +35,15 @@ exports.createRating = async(req,res) => {
     }
     //create rating
     const ratingReview = await RatingAndReview.create({rating,review,user:userId,course:courseId})
+    
+    console.log("ratingReview info inside rAr controller = ",ratingReview);
+    
     //push rating in course
     const updatedCourseDetails = await Course.findByIdAndUpdate({_id:courseId},
         {$push:{ratingAndReview:ratingReview._id}},
         {new:true}
     );
-    console.log(updatedCourseDetails);
+    console.log("updatedCourseDetails insid rar controller",updatedCourseDetails);
     
     //return response
     return res.status(200).json({

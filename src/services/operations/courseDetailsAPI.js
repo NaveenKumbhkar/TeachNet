@@ -22,6 +22,7 @@ const {
   GET_FULL_COURSE_DETAILS_AUTHENTICATED,
   CREATE_RATING_API,
   LECTURE_COMPLETION_API,
+  GET_ALL_SUB_SECTION_ID,
 } = courseEndpoints
 
 export const getAllCourses = async () => {
@@ -42,14 +43,14 @@ export const getAllCourses = async () => {
 }
 
 export const fetchCourseDetails = async (courseId) => {
-  const toastId = toast.loading("Loading...")
+  //const toastId = toast.loading("Loading...")
   //   dispatch(setLoading(true));
   let result = null
   try {
     const response = await apiConnector("POST", COURSE_DETAILS_API, {
       courseId,
     })
-    console.log("COURSE_DETAILS_API API RESPONSE............", response)
+    //console.log("COURSE_DETAILS_API API RESPONSE............", response)
 
     if (!response.data.success) {
       throw new Error(response.data.message)
@@ -60,7 +61,7 @@ export const fetchCourseDetails = async (courseId) => {
     result = error.response.data
     // toast.error(error.response.data.message);
   }
-  toast.dismiss(toastId)
+  //toast.dismiss(toastId)
   //   dispatch(setLoading(false));
   return result
 }
@@ -367,6 +368,33 @@ export const markLectureAsComplete = async (data, token) => {
   }
   toast.dismiss(toastId)
   return result
+}
+
+//getCompletedSubSectionsArray
+export const getCompletedSubSectionsArray = async(courseId,token) => {
+  let result = null;
+  //const toastId = toast.loading("Loading...")
+    try {
+    const response = await apiConnector("POST", `${GET_ALL_SUB_SECTION_ID}/${courseId}`, null, {
+      Authorization: `Bearer ${token}`,
+    })
+    console.log(
+      "GET_ALL_SUB_SECTION_ID API RESPONSE............",
+      response
+    )
+
+    if (!response.data.message) {
+      throw new Error(response.data.error)
+    }
+    //toast.success("...")
+    result = response
+  } catch (error) {
+    console.log("MARK_LECTURE_AS_COMPLETE_API API ERROR............", error)
+    //toast.error(error.message)
+  }
+  //toast.dismiss(toastId)
+  return result
+
 }
 
 // create a rating for course

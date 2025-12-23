@@ -7,10 +7,10 @@ const Contact = () => {
     return (
         <div>
             <div className="flex flex-col lg:flex-row w-11/12 max-w-maxContent mx-auto mt-20 gap-10">
-                <div className="w-[40%]">
+                <div className="lg:w-[40%]">
                     <ContactDetails />
                 </div>
-                <div className="w-[60%]">
+                <div className="lg:w-[60%]">
                     <ContactForm />
                 </div>
             </div>
