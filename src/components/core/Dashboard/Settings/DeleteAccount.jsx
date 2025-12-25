@@ -20,7 +20,7 @@ const DeleteAccount = () => {
     }
 
     return(
-        <div className="bg-pink-900 my-10 flex flex-row p-8 px-12 border-[1px] gap-x-5 border-pink-700 rounded-md">
+        <div className="bg-pink-900 my-10 flex flex-col md:flex-row p-8 px-4 md:px-12 border-[1px] gap-5 border-pink-700 rounded-md">
             <div className="flex aspect-square h-14 w-14 items-center justify-center rounded-full bg-pink-700">
                 <FiTrash2 className="text-3xl text-pink-200"/>
             </div>
@@ -28,7 +28,7 @@ const DeleteAccount = () => {
                 <h1 className="text-lg font-semibold text-richblack-5">
                     Delete Account
                 </h1>
-                <div className="w-3/5 text-pink-25">
+                <div className="md:w-3/5 text-pink-25">
                     <p>
                         Would you like to delete account?
                     </p>

@@ -13,14 +13,14 @@ const MyProfile = () => {
             <h1 className="text-3xl mb-14 text-richblack-5 font-medium">
                 My Profile
             </h1>
-            <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
-                <div className="flex flex-col md:flex-row md:items-center gap-y-4 md:gap-x-4">
+            <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-4 md:px-12">
+                <div className="flex flex-col md:flex-row md:items-center gap-y-4 md:gap-x-4 w-[50%] md:w-full">
                     <img src={user?.image}
                         alt={`Profile photo - ${user?.firstName}`}
-                        className="w-[78px] rounded-full object-cover"
+                        className="w-[50px] md:w-[78px] rounded-full object-cover"
                     />
                     <div className="space-y-1">
-                        <p className="text-lg font-semibold text-richblack-5">
+                        <p className="md:text-lg font-semibold text-richblack-5">
                             {`${user?.firstName} ${user?.lastName}`}
                         </p>
                         <p className="text-sm text-richblack-300">
@@ -36,7 +36,7 @@ const MyProfile = () => {
                     <RiEditBoxLine />
                 </IconBtn>
             </div>
-            <div className="bg-richblack-800 p-8 px-12 border-[1px] border-richblack-700 rounded-md flex flex-col my-10 gap-y-10">
+            <div className="bg-richblack-800 p-8 px-4 md:px-12 border-[1px] border-richblack-700 rounded-md flex flex-col my-10 gap-y-10 ">
                 <div className="w-full flex items-center justify-between">
                     <p className="text-lg text-richblack-5 font-semibold">
                         About
@@ -56,7 +56,7 @@ const MyProfile = () => {
                     {user?.additionalDetails?.about ?? "Writing something about yourself"}
                 </div>
             </div>
-            <div className="flex flex-col my-10 gap-y-10 p-8 px-12 bg-richblack-800 border-[1px] rounded-md border-richblack-700">
+            <div className="flex flex-col my-10 gap-y-10 p-8 px-4 md:px-12 bg-richblack-800 border-[1px] rounded-md border-richblack-700">
                 <div className="w-full flex items-center justify-between">
                     <p className="text-lg font-semibold text-richblack-5">
                         Personal Details
@@ -69,7 +69,7 @@ const MyProfile = () => {
                         <RiEditBoxLine />
                     </IconBtn>
                 </div>
-                <div className="flex max-w-[500px] justify-between">
+                <div className="flex flex-col md:flex-row max-w-[500px] justify-between">
                     <div className="flex flex-col gap-y-5">
                         <div>
                             <p className="mb-2 text-sm text-richblack-600">First Name</p>
