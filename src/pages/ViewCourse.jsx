@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Outlet, useParams } from "react-router-dom"
+import { FaList } from "react-icons/fa";
 
 import CourseReviewModal from "../components/core/ViewCourse/CourseReviewModal"
 import VideoDetailsSidebar from "../components/core/ViewCourse/VideoDetailsSidebar"
@@ -17,6 +18,7 @@ export default function ViewCourse() {
   const { token } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const [reviewModal, setReviewModal] = useState(false)
+  const [ sidebar , setSidebar ] = useState(true);
 
   useEffect(() => {
     ;(async () => {
@@ -42,8 +44,13 @@ export default function ViewCourse() {
   return (
     <>
       <div className="relative flex min-h-[calc(100vh-3.5rem)]">
-        <VideoDetailsSidebar setReviewModal={setReviewModal} />
-        <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto">
+        <VideoDetailsSidebar setReviewModal={setReviewModal} sidebar={sidebar} setSidebar={setSidebar} />
+        <div className="h-[calc(100vh-3.5rem)] w-full flex flex-col gap-4 overflow-auto">
+          <div className="relative lg:hidden w-full h-[50px] p-4">
+            <button onClick={(() => setSidebar((prev) => !prev))} className="absolute right-0 mr-4">
+              <FaList size={24} className="text-white"/>
+            </button>
+          </div>
           <div className="mx-6">
             <Outlet />
           </div>

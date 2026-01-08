@@ -4,7 +4,7 @@ import image from "../assets/Images/login.webp"
 const Login = () => {
     return(
         <Template
-        title = "Welcom back"
+        title = "Welcome back"
         description= "Build skills for today, tomorrow and beyond."
         description2= "Education to future-proof you carrer."
         image={image}

@@ -59,7 +59,8 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
         <img
           src={ThumbnailImage}
           alt={course?.courseName}
-          className="max-h-[300px] min-h-[180px] w-[400px] overflow-hidden rounded-2xl object-cover md:max-w-full"
+          //className="max-h-[300px] min-h-[180px] w-[400px] overflow-hidden rounded-2xl object-cover md:max-w-full"
+          className="max-h-[300px] min-h-[180px] w-full rounded-2xl object-cover"
         />
 
         <div className="px-4">
@@ -121,3 +122,26 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
 }
 
 export default CourseDetailsCard
+
+
+// const handleAddToCart = () => {
+//   if (user && user.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
+//     toast.error("You are an Instructor. You can't buy a course.")
+//     return
+//   }
+
+//   if (!token) {
+//     setConfirmationModal({
+//       text1: "You are not logged in!",
+//       text2: "Please login to add To Cart",
+//       btn1Text: "Login",
+//       btn2Text: "Cancel",
+//       btn1Handler: () => navigate("/login"),
+//       btn2Handler: () => setConfirmationModal(null),
+//     })
+//     return
+//   }
+
+//   dispatch(addToCart(course._id))
+//   toast.success("Course added to cart")
+// }

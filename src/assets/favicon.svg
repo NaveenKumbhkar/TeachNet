@@ -1,0 +1,45 @@
+<svg
+  width="256"
+  height="256"
+  viewBox="0 0 256 256"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <!-- Background -->
+  <rect
+    x="0"
+    y="0"
+    width="256"
+    height="256"
+    rx="32"
+    fill="#FFC107"
+  />
+
+  <!-- Books -->
+  <g fill="#1F2937">
+    <!-- Book 1 -->
+    <rect x="52" y="60" width="22" height="140" rx="4" />
+    <rect x="56" y="70" width="14" height="8" fill="#FFC107" />
+
+    <!-- Book 2 -->
+    <rect x="82" y="40" width="26" height="160" rx="4" />
+    <rect x="86" y="55" width="18" height="8" fill="#FFC107" />
+
+    <!-- Book 3 -->
+    <rect x="116" y="70" width="24" height="130" rx="4" />
+    <rect x="120" y="90" width="16" height="8" fill="#FFC107" />
+
+    <!-- Book 4 -->
+    <rect x="148" y="50" width="26" height="150" rx="4" />
+    <rect x="152" y="65" width="18" height="8" fill="#FFC107" />
+
+    <!-- Book 5 (tilted) -->
+    <rect
+      x="180"
+      y="70"
+      width="24"
+      height="140"
+      rx="4"
+      transform="rotate(-10 180 70)"
+    />
+  </g>
+</svg>
