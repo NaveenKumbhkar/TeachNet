@@ -32,7 +32,7 @@ export const sendOtp = (email, navigate) => {
             navigate("/verify-email");
         }
         catch (error) {
-            console.log("sendotp api error = ", error);
+            //console.log("sendotp api error = ", error);
             toast.error(error.response.data.message);
         }
         dispatch(setLoading(false));
@@ -56,7 +56,7 @@ export const getPasswordResetToken = (email, setEmailSend) => {
             setEmailSend(true);
         }
         catch (error) {
-            console.log("Reset password token error = ", error);
+            //console.log("Reset password token error = ", error);
             toast.error("Faild to send email for resetting email");
         }
         dispatch(setLoading(false));
@@ -85,7 +85,7 @@ export const resetPassword = (password, confirmPassword, token, navigate) => {
             }
         }
         catch (error) {
-            console.log("Reset password error = ", error);
+            //console.log("Reset password error = ", error);
             toast.error("Unable to reset password");
         }
         dispatch(setLoading(false));
@@ -118,7 +118,7 @@ export const signup = (accountType,
         }
         catch (error) {
             //console.log("data send to API is = ",firstName," ", lastName," ", email," ", password," ", confirmPassword," ", otp);
-            console.log("Failed to signup...");
+            //console.log("Failed to signup...");
             toast.error(error.response.data.message);
         }
         dispatch(setLoading(false));
@@ -142,7 +142,7 @@ export const login = (email, password, navigate) => {
 
             toast.success("Login successfully");
 
-            console.log("before token set token = ",response.data.token);
+            //console.log("before token set token = ",response.data.token);
             dispatch(setToken(response.data.token));
 
             //console.log("before userImage generating");

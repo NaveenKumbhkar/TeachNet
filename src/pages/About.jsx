@@ -3,7 +3,7 @@ import HighLightText from "../components/core/HomePage/HighLightText";
 import BannerImgOne from "../assets/Images/aboutus1.webp";
 import BannerImgTwo from "../assets/Images/aboutus2.webp";
 import BannerImgThree from "../assets/Images/aboutus3.webp";
-import ourFoundingImg from "../assets/Images/foundingStory.png";
+import ourFoundingImg from "../assets/Images/FoundingStory.png";
 import StatusComponent from "../components/core/AboutPage/StatusComponent";
 import LearningGrid from "../components/core/AboutPage/LearningGrid";
 import ContactFormSection from "../components/core/AboutPage/ContactFormSection";
