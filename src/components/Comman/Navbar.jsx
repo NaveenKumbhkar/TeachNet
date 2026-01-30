@@ -404,9 +404,9 @@ function Navbar() {
           <div className="hidden items-center gap-4 md:flex">
             {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
               <Link to="/dashboard/cart" className="relative">
-                <AiOutlineShoppingCart className="text-2xl" />
+                <AiOutlineShoppingCart className="text-2xl text-white" />
                 {totalItems > 0 && (
-                  <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center rounded-full bg-yellow-100 text-xs font-bold text-richblack-900">
+                  <span className="absolute bottom-2 -right-2 grid h-4 w-4 place-items-center rounded-full bg-yellow-100 text-xs font-bold text-richblack-900 animate-bounce">
                     {totalItems}
                   </span>
                 )}
@@ -416,12 +416,12 @@ function Navbar() {
             {token === null && (
               <>
                 <Link to="/login">
-                  <button className="rounded-md border px-3 py-1">
+                  <button className="font-semibold rounded-md border bg-yellow-100 px-3 py-1 text-richblack-900">
                     Log in
                   </button>
                 </Link>
                 <Link to="/signup">
-                  <button className="rounded-md bg-yellow-100 px-3 py-1 text-richblack-900">
+                  <button className="font-semibold rounded-md bg-yellow-100 px-3 py-1 text-richblack-900">
                     Sign up
                   </button>
                 </Link>
@@ -554,17 +554,17 @@ function Navbar() {
             {token === null ? (
               <div className="flex flex-col gap-3">
                 <Link to="/login">
-                  <button className="w-full rounded-md border py-2"
-                  onClick={() => setMobileMenuOpen(false)}>
+                  <button className="w-full rounded-md bg-yellow-100 py-1 text-richblack-900">
                     Log in
                   </button>
                 </Link>
                 <Link to="/signup">
-                  <button className="w-full rounded-md bg-yellow-100 py-2 text-richblack-900"
-                  onClick={() => setMobileMenuOpen(false)}>
+                  <button className="w-full rounded-md bg-yellow-100 py-1 text-richblack-900">
                     Sign up
                   </button>
                 </Link>
+             
+          
               </div>
             ) : (
               <ProfileDropdown setMobileMenuOpen={setMobileMenuOpen} />
