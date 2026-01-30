@@ -20,7 +20,7 @@ export const sendOtp = (email, navigate) => {
         try {
             const response = await apiConnector("POST", SENDOTP_API, { email, checkUserPresent: true, });
 
-            //console.log("SendOtp api response = ", response);
+            console.log("SendOtp api response = ", response);
             //console.log(response.data.success);
 
             if (!response.data.success) {
