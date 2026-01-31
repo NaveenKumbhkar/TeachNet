@@ -90,18 +90,15 @@ const UpdatePassword = () => {
                                 </label>
                                 <div className="flex flex-wrap gap-x-4 text-caribbeangreen-400">
                                     <div className="flex gap-2 items-center">
-                                        <FaCheckCircle /> one lowercase character
+                                        <FaCheckCircle /> Uppercase (A-Z) letters
                                     </div><div className="flex gap-2 items-center">
-                                        <FaCheckCircle /> one lowercase character
+                                        <FaCheckCircle /> Lowercase (a-z) letters
                                     </div>
                                     <div className="flex gap-2 items-center">
-                                        <FaCheckCircle /> one lowercase character
+                                        <FaCheckCircle /> Special characters (!@#$%^&*)
                                     </div>
                                     <div className="flex gap-2 items-center">
-                                        <FaCheckCircle /> one lowercase character
-                                    </div>
-                                    <div className="flex gap-2 items-center">
-                                        <FaCheckCircle /> one lowercase character
+                                        <FaCheckCircle /> Numbers (0-9)
                                     </div>
                                 </div>
                                 <button
