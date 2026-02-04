@@ -20,7 +20,7 @@ export const sendOtp = (email, navigate) => {
         try {
             const response = await apiConnector("POST", SENDOTP_API, { email, checkUserPresent: true, });
 
-            //console.log("SendOtp api response = ", response);
+            console.log("SendOtp api response = ", response);
             //console.log(response.data.success);
 
             if (!response.data.success) {
@@ -74,7 +74,7 @@ export const resetPassword = (password, confirmPassword, token, navigate) => {
             else {
                 const response = await apiConnector("POST", RESETPASSWORD_API, { password, confirmPassword, token });
 
-                //console.log("Reset api response = ", response);
+                console.log("Reset api response = ", response);
 
                 if (!response.data.success) {
                     throw new Error(response.data.message);
@@ -85,7 +85,7 @@ export const resetPassword = (password, confirmPassword, token, navigate) => {
             }
         }
         catch (error) {
-            //console.log("Reset password error = ", error);
+            console.log("Reset password error = ", error);
             toast.error("Unable to reset password");
         }
         dispatch(setLoading(false));
