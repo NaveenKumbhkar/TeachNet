@@ -74,10 +74,17 @@ exports.capturePayment = async (req, res) => {
 // verify the payment
 exports.verifyPayment = async (req, res) => {
   console.log("welcome to inside controllers/payments.js");
+  console.log("VERIFY BODY:", req.body);
+
+
   const razorpay_order_id = req.body?.razorpay_order_id
   const razorpay_payment_id = req.body?.razorpay_payment_id
   const razorpay_signature = req.body?.razorpay_signature
   const courses = req.body?.courses
+
+  console.log("ORDER ID:", razorpay_order_id);
+  console.log("PAYMENT ID:", razorpay_payment_id);
+  console.log("SIGNATURE RECEIVED:", razorpay_signature);
 
   const userId = req.user.id
 
@@ -91,6 +98,9 @@ exports.verifyPayment = async (req, res) => {
     return res.status(400).json({ success: false, message: "Payment Failed" })
   }
 
+
+  console.log("SECRET:", process.env.RAZORPAY_KEY_SECRET);
+  
   let body = razorpay_order_id + "|" + razorpay_payment_id
 
   const expectedSignature = crypto
