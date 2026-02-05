@@ -6,7 +6,7 @@ const Login = () => {
         <Template
         title = "Welcome back"
         description= "Build skills for today, tomorrow and beyond."
-        description2= "Education to future-proof you carrer."
+        description2= "Education to future-proof your career."
         image={image}
         formType="login"
         />
