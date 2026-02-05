@@ -99,8 +99,8 @@ exports.verifyPayment = async (req, res) => {
   }
 
 
-  console.log("SECRET:", process.env.RAZORPAY_KEY_SECRET);
-  
+  console.log("SECRET:", process.env.RAZORPAY_SECRET);
+
   let body = razorpay_order_id + "|" + razorpay_payment_id
 
   const expectedSignature = crypto
