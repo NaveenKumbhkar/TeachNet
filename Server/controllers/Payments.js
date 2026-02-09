@@ -58,7 +58,7 @@ exports.capturePayment = async (req, res) => {
   try {
     // Initiate the payment using Razorpay
     const paymentResponse = await instance.orders.create(options)
-    console.log(paymentResponse)
+    //console.log(paymentResponse)
     res.json({
       success: true,
       data: paymentResponse,
@@ -74,7 +74,7 @@ exports.capturePayment = async (req, res) => {
 // verify the payment
 exports.verifyPayment = async (req, res) => {
   console.log("welcome to inside controllers/payments.js");
-  console.log("VERIFY BODY:", req.body);
+  //console.log("VERIFY BODY:", req.body);
 
 
   const razorpay_order_id = req.body?.razorpay_order_id
@@ -82,9 +82,9 @@ exports.verifyPayment = async (req, res) => {
   const razorpay_signature = req.body?.razorpay_signature
   const courses = req.body?.courses
 
-  console.log("ORDER ID:", razorpay_order_id);
-  console.log("PAYMENT ID:", razorpay_payment_id);
-  console.log("SIGNATURE RECEIVED:", razorpay_signature);
+  //console.log("ORDER ID:", razorpay_order_id);
+  //console.log("PAYMENT ID:", razorpay_payment_id);
+  //console.log("SIGNATURE RECEIVED:", razorpay_signature);
 
   const userId = req.user.id
 
@@ -99,7 +99,7 @@ exports.verifyPayment = async (req, res) => {
   }
 
 
-  console.log("SECRET:", process.env.RAZORPAY_SECRET);
+  //console.log("SECRET:", process.env.RAZORPAY_SECRET);
 
   let body = razorpay_order_id + "|" + razorpay_payment_id
 
@@ -151,7 +151,7 @@ exports.sendPaymentSuccessEmail = async (req, res) => {
 
 // enroll the student in the courses
 const enrollStudents = async (courses, userId, res) => {
-  console.log("cours Id and user Id inside enrollStudents functions = ",courses," ",userId);
+  //console.log("cours Id and user Id inside enrollStudents functions = ",courses," ",userId);
   if (!courses || !userId) {
     return res
       .status(400)
@@ -203,7 +203,7 @@ const enrollStudents = async (courses, userId, res) => {
       //   )
       // )
 
-      console.log("Email sent successfully: ", emailResponse.response)
+      //console.log("Email sent successfully: ", emailResponse.response)
     } catch (error) {
       console.log(error)
       return res.status(400).json({ success: false, error: error.message })

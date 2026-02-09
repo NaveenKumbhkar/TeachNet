@@ -83,7 +83,7 @@ const Home = () => {
                     <CodeBlocks
                         position={"lg:flex-row-reverse"}
                         heading={
-                            <div className="text-4xl font-semibold w-[100%] lg:w-[50%]">
+                            <div className="text-4xl font-semibold w-full lg:w-[50%]">
                                 Start <HighLightText text={"coding in seconds"} />
                             </div>
                         }

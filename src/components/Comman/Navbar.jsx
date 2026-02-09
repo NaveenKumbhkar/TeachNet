@@ -554,12 +554,14 @@ function Navbar() {
             {token === null ? (
               <div className="flex flex-col gap-3">
                 <Link to="/login">
-                  <button className="w-full rounded-md bg-yellow-100 py-1 text-richblack-900">
+                  <button className="w-full rounded-md bg-yellow-100 py-1 text-richblack-900"
+                  onClick={() => setMobileMenuOpen(false)}>
                     Log in
                   </button>
                 </Link>
                 <Link to="/signup">
-                  <button className="w-full rounded-md bg-yellow-100 py-1 text-richblack-900">
+                  <button className="w-full rounded-md bg-yellow-100 py-1 text-richblack-900"
+                  onClick={() => setMobileMenuOpen(false)}>
                     Sign up
                   </button>
                 </Link>
