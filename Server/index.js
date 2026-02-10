@@ -68,15 +68,19 @@ app.use("/api/v1/reach",contactUsRoutes);
 // });
 
 
-// const path = require("path");
+const path = require("path");
 
-// app.use(express.static(path.join(__dirname, "../dist")));
+/* FRONTEND DIST PATH */
+const distPath = path.join(__dirname, "../client/dist");
 
-// app.get("*", (req, res) => {
-//   res.sendFile(
-//     path.join(__dirname, "../dist/index.html")
-//   );
-// });
+// static frontend files
+app.use(express.static(distPath));
+
+// SPA fallback (VERY IMPORTANT)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(distPath, "index.html"));
+});
+
 
 
 
