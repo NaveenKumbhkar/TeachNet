@@ -279,7 +279,6 @@ import { NavbarLinks } from "../../data/navbar-links"
 import { apiConnector } from "../../services/apiConnector"
 import { categories } from "../../services/apis"
 import { ACCOUNT_TYPE } from "../../utils/constants"
-import ProfileDropdow from "../core/Auth/ProfileD"
 import ProfileDropdown from "../core/Auth/ProfileDropdown"
 
 function Navbar() {
