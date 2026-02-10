@@ -43,6 +43,15 @@ app.use(
 //cloudinary connection
 cloudinaryConnect();
 
+
+
+app.get("/health", (req, res) => {
+  res.send("SERVER OK");
+});
+
+
+
+
 //routes
 app.use("/api/v1/auth",userRoutes);
 app.use("/api/v1/profile",profileRoutes);
