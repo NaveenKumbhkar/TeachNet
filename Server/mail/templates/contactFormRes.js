@@ -66,7 +66,7 @@ const contactUsEmail = (email,firstName,lastName,message,phoneNo,countryCode) =>
     <body>
         <div class="container">
             <a href="#"><img class="logo"
-                    src="https://i.ibb.co/7Xyj3PC/logo.png" alt="StudyNotion Logo"></a>
+                    src="https://res.cloudinary.com/dfmccqbe8/image/upload/v1770684314/studyNotionPhotos/opd9ncd00od7ejclejoj.png" alt="TeachNet Logo"></a>
             <div class="message">Contact Form Confirmation</div>
             <div class="body">
                 <p>Dear ${firstName} ${lastName},</p>
@@ -80,7 +80,7 @@ const contactUsEmail = (email,firstName,lastName,message,phoneNo,countryCode) =>
                 <p>We appreciate your interest and will get back to you shortly. </p>
             </div>
             <div class="support">If you have any further questions or need immediate assistance, please feel free to reach
-                out to us at <a href="mailto:info@studynotion.com">info@studynotion.com</a>. We are here to help!</div>
+                out to us at <a href="mailto:info@teachnet.com">info@teachnet.com</a>. We are here to help!</div>
         </div>
     </body>
     
