@@ -25,8 +25,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        //origin:"http://localhost:5173",
-        origin:"https://teachnet-ji73.onrender.com",
+        origin:"http://localhost:5173",
+        //origin:"https://teachnet-ji73.onrender.com",
         credentials:true,
     })
 )
@@ -68,15 +68,15 @@ app.get("/",(req,res) => {
 });
 
 
-const path = require("path");
+// const path = require("path");
 
-app.use(express.static(path.join(__dirname, "../dist")));
+// app.use(express.static(path.join(__dirname, "../dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "../dist/index.html")
-  );
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(
+//     path.join(__dirname, "../dist/index.html")
+//   );
+// });
 
 
 
