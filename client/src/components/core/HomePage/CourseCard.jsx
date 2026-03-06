@@ -6,7 +6,7 @@ const CourseCard = ({courseData , currentCard , setCurrentCard}) =>{
     return(
         <div className={`${currentCard === courseData?.heading 
         ? "bg-white shadow-[12px_12px] shadow-yellow-50 text-richblack-900" 
-        : "bg-richblack-800"} w-[360px] h-[300px] lg:w-[30%] box-border flex flex-col`}
+        : "bg-richblack-800"} w-full md:w-[360px] h-[300px] lg:w-[30%] box-border flex flex-col rounded-md`}
         onClick={() => {setCurrentCard(courseData?.heading)}}>
             <div className="flex flex-col gap-3 border-b-[2px] border-richblack-400 border-dashed p-6 h-[80%]">
                 <h1 className="text-xl font-semibold">{courseData?.heading}</h1>

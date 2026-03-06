@@ -42,13 +42,13 @@ const Home = () => {
                         Book a Demo
                     </CTAButton>
                 </div>
-                <div className="mx-3 my-6 shadow-[10px_-5px_50px_-5px] shadow-blue-200">
+                <div className="mx-3 my-6 rounded-md shadow-[10px_-5px_50px_-5px] shadow-blue-200">
                     <video
-                        className="shadow-[18px_18px_rgba(255,255,255)]"
+                        className="rounded-md shadow-[18px_18px_rgba(255,255,255)]"
                         muted loop autoPlay src={videoLink} type="video/mp4">
                     </video>
                 </div>
-                <div>
+                <div className=" -mb-24 md:-mb">
                     <CodeBlocks
                         position={"lg:flex-row"}
                         heading={
@@ -142,7 +142,7 @@ const Home = () => {
                         </div>
                         <div className="flex flex-col items-start gap-10 lg:w-[40%]">
                             <div className="text-[16px]">
-                                The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
+                                The modern TeachNet is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
                             </div>
                             <CTAButton active={true} toLink={"/signup"}>
                                 Learn More
@@ -157,7 +157,7 @@ const Home = () => {
 
             {/* section three */}
 
-            <div className="w-11/12 flex flex-col justify-center items-center my-20 mx-auto max-w-maxContent gap-8 bg-richblack-900 text-white mt-28">
+            <div className="w-11/12 flex flex-col justify-center items-center my-0 mx-auto max-w-maxContent gap-8 bg-richblack-900 text-white mt-28">
                 <InstructorSection/>
                 <h2 className="text-center text-4xl font-semibold mt-8">
                     Review from other laerners

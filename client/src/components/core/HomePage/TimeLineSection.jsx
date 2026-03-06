@@ -31,7 +31,7 @@ const timeLine = [
 
 const TimeLineSection = () => {
     return (
-        <div className="flex flex-col lg:flex-row items-center gap-20 mb-20">
+        <div className="flex flex-col lg:flex-row items-center gap-20 md:mb-20">
             <div className="lg:w-[45%] flex flex-col gap-14 lg:gap-3">
                 {
                     timeLine.map((element , index) => {
@@ -55,7 +55,7 @@ const TimeLineSection = () => {
                     })
                 }
             </div>
-            <div className="relative w-fit h-fit shadow-blue-200 shadow-[0px_0px_30px_0px]">
+            <div className="relative w-fit h-fit rounded-md shadow-blue-200 shadow-[0px_0px_30px_0px]">
                 <div className="absolute lg:left-[50%] lg:bottom-0 lg:translate-x-[-50%] lg:translate-y-[50%] bg-caribbeangreen-700 flex lg:flex-row flex-col text-white uppercase py-5 gap-4 lg:gap-0 lg:py-10">
                     <div className="flex gap-5 items-center lg:border-r border-caribbeangreen-300 px-7 lg:px-14">
                         <h1 className="text-3xl font-bold w-[75px]">10</h1>
@@ -70,8 +70,8 @@ const TimeLineSection = () => {
                         </h1>
                     </div>
                 </div>
-                <div className="shadow-[10px_-5px_50px_-5px] shadow-blue-200">
-                    <img className="shadow-[18px_18px_rgba(255,255,255)]" src={timeLineImage} alt="" />
+                <div className="shadow-[10px_-5px_50px_-5px] shadow-blue-200 rounded-md">
+                    <img className="rounded-md shadow-[18px_18px_rgba(255,255,255)]" src={timeLineImage} alt="" />
                 </div>
             </div>
         </div>
