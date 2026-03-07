@@ -1,47 +1,3 @@
-// import React from 'react'
-
-// import {Swiper, SwiperSlide} from "swiper/react"
-// import "swiper/css"
-// import "swiper/css/free-mode"
-// import "swiper/css/pagination"
-// //import { FreeMode, Pagination}  from 'swiper'
-// import { Autoplay,FreeMode,Navigation, Pagination}  from 'swiper/modules'
-
-// import Course_Card from './Course_Card'
-
-// const CourseSlider = ({Courses}) => {
-//   return (
-//     <>
-//       {Courses?.length ? (
-//         <Swiper
-//           slidesPerView={1}
-//           spaceBetween={25}
-//           loop={true}
-//           modules={[FreeMode, Pagination]}
-//           breakpoints={{
-//             1024: {
-//               slidesPerView: 5,
-//             },
-//           }}
-//           className="max-h-[30rem]"
-//         >
-//           {Courses?.map((course, i) => (
-//             <SwiperSlide key={i}>
-//               <Course_Card course={course} Height={"h-[200px]"} />
-//             </SwiperSlide>
-//           ))}
-//         </Swiper>
-//       ) : (
-//         <p className="text-xl text-richblack-5">No Course Found</p>
-//       )}
-//     </>
-//   )
-// }
-
-// export default CourseSlider
-
-
-
 import React from "react"
 
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -60,6 +16,7 @@ const CourseSlider = ({ Courses }) => {
         <Swiper
           loop={true}
           freeMode={true}
+          //centeredSlides={true}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
@@ -70,48 +27,42 @@ const CourseSlider = ({ Courses }) => {
             // 📱 Mobile
             320: {
               slidesPerView: 1,
-              spaceBetween: 16,
-              centeredSlides: true,
+              spaceBetween: 0,
             },
 
             // 📱 Large Mobile
             480: {
               slidesPerView: 1,
-              spaceBetween: 20,
-              centeredSlides: true,
+              spaceBetween: 0,
             },
 
             // 📱➡️📲 Small Tablet
             640: {
               slidesPerView: 2,
-              spaceBetween: 20,
-              centeredSlides: false,
+              spaceBetween: 2,
             },
 
             // 📲 Tablet
             768: {
-              slidesPerView: 3,
-              spaceBetween: 22,
-              centeredSlides: false,
+              slidesPerView: 2,
+              spaceBetween: 5,
             },
 
             // 💻 Laptop
             1024: {
-              slidesPerView: 4,
-              spaceBetween: 25,
-              centeredSlides: false,
+              slidesPerView: 3,
+              spaceBetween: 0,
             },
 
             // 🖥️ Desktop
             1280: {
-              slidesPerView: 5,
-              spaceBetween: 25,
-              centeredSlides: false,
+              slidesPerView: 3,
+              spaceBetween: 0,
             },
           }}
         >
           {Courses.map((course, index) => (
-            <SwiperSlide key={index} className="flex justify-center">
+            <SwiperSlide key={index} className="flex justify-center items-center">
               <Course_Card
                 course={course}
                 Height="h-[200px]"

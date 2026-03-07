@@ -11,26 +11,8 @@ const Course_Card = ({ course, Height }) => {
     const courseId = course?._id;
     //console.log("Course Id inside Course_Card = ",course?._id);
 
-    // useEffect(() => {
-    //     // if (course?.ratingAndReview) {
-    //     //     console.log("ratingAndReview inside Course_card = ",course.ratingAndReview);
-    //     //     const count = GetAvgRating(course.ratingAndReview);
-    //     //     console.log("count = ",count);
-    //     //     setAvgReviewCount(count);
-    //     // }
-    //     async () => {
-    //           try {
-    //             const res = await fetchCourseDetails(courseId)
-    //             setResponse(res)
-    //           } catch (error) {
-    //             console.log("Could not fetch Course Details")
-    //           }
-    //         }
-    // }, [courseId]);
-
-
     useEffect(() => {
-  async function getDetails() {
+    async function getDetails() {
     try {
       const res = await fetchCourseDetails(courseId)
       setResponse(res)
@@ -56,12 +38,12 @@ const Course_Card = ({ course, Height }) => {
 
     return (
         <Link to={`/courses/${course._id}`}>
-            <div className="">
+            <div className="mx-auto max-w-[308px] bg-richblack-700 border border-richblack-600 rounded-md p-4">
                 <div className="rounded-lg">
                     <img
                         src={course?.thumbnail || "/default-thumbnail.jpg"}
                         alt="course thumbnail"
-                        className={`${Height} max-w-[200px] rounded-xl object-cover `}
+                        className={`${Height} w-[300px] rounded-xl object-cover `}
                     />
                 </div>
                 <div className="flex flex-col gap-2 px-1 py-3">
