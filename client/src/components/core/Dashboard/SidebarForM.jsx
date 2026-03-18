@@ -24,10 +24,54 @@ const Sidebar = () => {
             </div>
         )
     }
-    return (
+//     return (
+//         <>
+//             <div className="flex h-[calc(100vh-3.5rem)] min-w-[20px] flex-col border-r-[1px] rounded-md border-r-richblack-700 bg-richblack-800 py-10 mt-5">
+//                 <div className="flex flex-col">
+//                     {
+//                         sidebarLinks.map((link) => {
+//                             if (link.type && user?.accountType !== link.type) return null;
+//                             return (
+//                                 <SidebarLinkForM key={link.id} link={link} iconName={link.icon} />
+//                             )
+//                         })
+//                     }
+//                 </div>
+//                 <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-700" />
+//                 <div className="flex flex-col">
+//                     <SidebarLinkForM
+//                         link={{ name: "Settings", path: "/dashboard/settings" }}
+//                         iconName="VscSettingsGear"
+//                     />
+//                     <button
+//                         onClick={() => setConfirmationModal({
+//                             text1: "Are you sure?",
+//                             text2: "You will be logged out of your account.",
+//                             btn1Text: "Logout",
+//                             btn2Text: "Cancel",
+//                             btn1Handler: () => dispatch(logout(navigate)),
+//                             btn2Handler: () => setConfirmationModal(null),
+//                         })}
+//                         className="px-2 py-2 text-sm font-medium text-richblack-300"
+//                     >
+//                         <div className="flex items-center gap-x-2">
+//                             <VscSignOut className="text-lg" />
+//                             {/* <span>Logout</span> */}
+//                         </div>
+//                     </button>
+//                 </div>
+//             </div>
+//             {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
+//         </>
+//     )
+
+
+
+
+return (
         <>
-            <div className="flex h-[calc(100vh-3.5rem)] min-w-[20px] flex-col border-r-[1px] rounded-md border-r-richblack-700 bg-richblack-800 py-10 mt-5">
-                <div className="flex flex-col">
+            <div className="flex h-[50px] w-full min-w-[20px] items-center justify-center border-r-[1px] rounded-lg border-r-richblack-700 bg-richblack-600 bottom-4">
+                <div className="flex">
                     {
                         sidebarLinks.map((link) => {
                             if (link.type && user?.accountType !== link.type) return null;
@@ -37,8 +81,7 @@ const Sidebar = () => {
                         })
                     }
                 </div>
-                <div className="mx-auto mt-6 mb-6 h-[1px] w-10/12 bg-richblack-700" />
-                <div className="flex flex-col">
+                <div className="flex">
                     <SidebarLinkForM
                         link={{ name: "Settings", path: "/dashboard/settings" }}
                         iconName="VscSettingsGear"
@@ -64,6 +107,7 @@ const Sidebar = () => {
             {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
         </>
     )
+
 }
 
 export default Sidebar;

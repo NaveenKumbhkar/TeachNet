@@ -331,7 +331,7 @@ function Navbar() {
   }
 
   return (
-    <>
+    <div className="fixed top-0 left-0 w-full z-[999] bg-richblack-900/80 border-b border-richblack-700">
       {/* ================= DESKTOP NAVBAR ================= */}
       <div
         className={`flex h-14 items-center justify-center border-b border-richblack-700 ${
@@ -573,7 +573,7 @@ function Navbar() {
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
 

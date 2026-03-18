@@ -76,7 +76,7 @@ const Catalog = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="box-content bg-richblack-800 px-4">
-            <div className="mx-auto flex min-h-[160px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent">
+            <div className="mx-auto mt-14 flex min-h-[160px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent">
               <p className="text-sm text-richblack-300">
                 {`Home / Catalog / `}
                 <span className="text-yellow-25">
