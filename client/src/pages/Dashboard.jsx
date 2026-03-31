@@ -60,7 +60,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="flex min-h-[calc(100vh-3.5rem)] my-14 bg-richblack-900 text-white">
+    <div className="flex min-h-[calc(100vh-3.5rem)] mt-14 bg-richblack-900 text-white">
 
       {/* Mobile Sidebar */}
       <motion.div
@@ -72,7 +72,7 @@ const Dashboard = () => {
        </motion.div>
 
       {/* Desktop Sidebar */}
-      <div className="hidden lg:block">
+      <div className="hidden fixed h-full z-50 lg:block">
         <Sidebar />
       </div>
 
@@ -81,7 +81,7 @@ const Dashboard = () => {
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="flex-1 overflow-y-auto"
+        className="flex-1 lg:ml-48 overflow-y-auto"
       >
         <div className="mx-auto w-11/12 max-w-[1100px] py-10">
 

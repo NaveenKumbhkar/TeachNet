@@ -2,6 +2,8 @@ import { FiTrash2 } from "react-icons/fi";
 import { deleteAccount } from "../../../../services/operations/settingsAPI";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import ConfirmationModal from "../../../Comman/ConfirmationModal";
 
 
 const DeleteAccount = () => {
@@ -9,10 +11,18 @@ const DeleteAccount = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { token } = useSelector(state => state.auth);
+    const [confirmationModal, setConfirmationModal] = useState(null);
 
     const handelDeleteAccount = () => {
-        try{
-            dispatch(deleteAccount(token , navigate));
+        try{setConfirmationModal({
+                                        text1: "Are you sure you want to delete your account?",
+                                        text2: "This action cannot be undone. All your data, including your courses, progress, and personal information, will be permanently deleted.",
+                                        btn1Text: "Delete Account",
+                                        btn2Text: "Cancel",
+                                        btn1Handler: () => dispatch(deleteAccount(token , navigate)),
+                                        btn2Handler: () => setConfirmationModal(null),
+                                    })
+            //dispatch(deleteAccount(token , navigate));
         }
         catch(error){
             console.log("Error message = ",error.message);
@@ -44,6 +54,7 @@ const DeleteAccount = () => {
                     </button>
                 </div>
             </div>
+            {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
         </div>
     )
 }

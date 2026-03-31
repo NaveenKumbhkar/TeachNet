@@ -43,7 +43,7 @@ export default function ViewCourse() {
 
   return (
     <>
-      <div className="relative flex min-h-[calc(100vh-3.5rem)]">
+      <div className="relative flex min-h-[calc(100vh-3.5rem)] mt-14">
         <VideoDetailsSidebar setReviewModal={setReviewModal} sidebar={sidebar} setSidebar={setSidebar} />
         <div className="h-[calc(100vh-3.5rem)] w-full flex flex-col gap-4 overflow-auto">
           <div className="relative lg:hidden w-full h-[50px] p-4">
