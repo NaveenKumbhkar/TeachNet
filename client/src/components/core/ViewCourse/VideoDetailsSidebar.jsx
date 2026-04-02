@@ -4,10 +4,11 @@ import { IoIosArrowBack } from "react-icons/io"
 import { useSelector } from "react-redux"
 import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { RxCrossCircled } from "react-icons/rx";
+import { AnimatePresence, motion } from "framer-motion";
 
 import IconBtn from "../../Comman/IconBtn"
 
-export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar }) {
+export default function VideoDetailsSidebar({ setReviewModal, sidebar, setSidebar }) {
   const [activeStatus, setActiveStatus] = useState("")
   const [videoBarActive, setVideoBarActive] = useState("")
   const navigate = useNavigate()
@@ -21,7 +22,7 @@ export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar
   } = useSelector((state) => state.viewCourse)
 
   useEffect(() => {
-    ;(() => {
+    ; (() => {
       if (!courseSectionData.length) return
       const currentSectionIndx = courseSectionData.findIndex(
         (data) => data._id === sectionId
@@ -42,14 +43,18 @@ export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar
 
   return (
     <>
-      {/* ================= MOBILE VIEW ================= */}    
-      <div className={`absolute ${ sidebar ? "flex" : "hidden"} z-10 lg:hidden h-[calc(100vh-3.5rem)] w-[calc(100vw-2.5rem)] mt-20 mx-5 flex-col border-r-[1px] rounded-t-lg border-r-richblack-700 bg-richblack-800`}>
-        <div className="absolute right-0 -top-12 bg-richblack-800 rounded-t-lg p-3">
-          <button onClick={(() => setSidebar((prev) => !prev))}>
-            <RxCrossCircled size={24} className="text-white"/>
-          </button>
-        </div>
+      {/* ================= MOBILE VIEW ================= */}
+      <AnimatePresence>
+        {sidebar && (
+      <motion.div
+        initial={{ y: "100%", opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: "100%", opacity: 0 }}
+        transition={{ duration: 0.8 }}
+        className="fixed z-50 lg:hidden h-[calc(100vh-3.5rem)] w-[calc(100vw-2.5rem)] mt-20 mx-5 flex-col border-r-[1px] rounded-t-lg border-r-richblack-700 bg-richblack-800">
+
         <div className="mx-5 flex flex-col items-start justify-between gap-2 gap-y-4 border-b border-richblack-600 py-5 text-lg font-bold text-richblack-25">
+
           <div className="flex w-full items-center justify-between ">
             <div
               onClick={() => {
@@ -60,12 +65,15 @@ export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar
             >
               <IoIosArrowBack size={30} />
             </div>
-            <IconBtn
-              text="Add Review"
-              customClasses="ml-auto"
-              onclick={() => setReviewModal(true)}
-            />
+            <button onClick={(() => setSidebar((prev) => !prev))} className="">
+              <RxCrossCircled size={30} className="text-white" />
+            </button>
           </div>
+          <button
+              className="w-full rounded-lg bg-richblack-200 text-richblack-900 py-2"
+              onClick={() => setReviewModal(true)}>
+                Add Review
+          </button>
           <div className="flex flex-col">
             <p>{courseEntireData?.courseName}</p>
             <p className="text-sm font-semibold text-richblack-500">
@@ -91,11 +99,10 @@ export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar
                     Lession {course?.subSection.length}
                   </span> */}
                   <span
-                    className={`${
-                      activeStatus === course?.sectionName
+                    className={`${activeStatus === course?.sectionName
                         ? "rotate-0"
                         : "rotate-180"
-                    } transition-all duration-500`}
+                      } transition-all duration-500`}
                   >
                     <BsChevronDown />
                   </span>
@@ -107,11 +114,10 @@ export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar
                 <div onClick={(() => setSidebar((prev) => !prev))} className="transition-[height] duration-500 ease-in-out">
                   {course.subSection.map((topic, i) => (
                     <div
-                      className={`flex gap-3  px-5 py-2 ${
-                        videoBarActive === topic._id
+                      className={`flex gap-3  px-5 py-2 ${videoBarActive === topic._id
                           ? "bg-yellow-200 font-semibold text-richblack-800"
                           : "hover:bg-richblack-900"
-                      } `}
+                        } `}
                       key={i}
                       onClick={() => {
                         navigate(
@@ -123,7 +129,7 @@ export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar
                       <input
                         type="checkbox"
                         checked={completedLectures.includes(topic?._id)}
-                        onChange={() => {}}
+                        onChange={() => { }}
                       />
                       {topic.title}
                     </div>
@@ -133,7 +139,9 @@ export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
+        )}
+      </AnimatePresence>
 
 
 
@@ -151,11 +159,12 @@ export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar
             >
               <IoIosArrowBack size={30} />
             </div>
-            <IconBtn
-              text="Add Review"
-              customClasses="ml-auto"
-              onclick={() => setReviewModal(true)}
-            />
+            <button
+              className="w-[150px] rounded-lg bg-richblack-200 text-richblack-900 py-1"
+              onClick={() => setReviewModal(true)}>
+                Add Review
+          </button>
+            
           </div>
           <div className="flex flex-col">
             <p>{courseEntireData?.courseName}</p>
@@ -182,11 +191,10 @@ export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar
                     Lession {course?.subSection.length}
                   </span> */}
                   <span
-                    className={`${
-                      activeStatus === course?.sectionName
+                    className={`${activeStatus === course?.sectionName
                         ? "rotate-0"
                         : "rotate-180"
-                    } transition-all duration-500`}
+                      } transition-all duration-500`}
                   >
                     <BsChevronDown />
                   </span>
@@ -198,11 +206,10 @@ export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar
                 <div className="transition-[height] duration-500 ease-in-out">
                   {course.subSection.map((topic, i) => (
                     <div
-                      className={`flex gap-3  px-5 py-2 ${
-                        videoBarActive === topic._id
+                      className={`flex gap-3  px-5 py-2 ${videoBarActive === topic._id
                           ? "bg-yellow-200 font-semibold text-richblack-800"
                           : "hover:bg-richblack-900"
-                      } `}
+                        } `}
                       key={i}
                       onClick={() => {
                         navigate(
@@ -214,7 +221,7 @@ export default function VideoDetailsSidebar({ setReviewModal ,sidebar,setSidebar
                       <input
                         type="checkbox"
                         checked={completedLectures.includes(topic?._id)}
-                        onChange={() => {}}
+                        onChange={() => { }}
                       />
                       {topic.title}
                     </div>

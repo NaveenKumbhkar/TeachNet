@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Outlet, useParams } from "react-router-dom"
-import { FaList } from "react-icons/fa";
+import { HiClipboardDocumentList } from "react-icons/hi2";
 
 import CourseReviewModal from "../components/core/ViewCourse/CourseReviewModal"
 import VideoDetailsSidebar from "../components/core/ViewCourse/VideoDetailsSidebar"
@@ -48,7 +48,7 @@ export default function ViewCourse() {
         <div className="h-[calc(100vh-3.5rem)] w-full flex flex-col gap-4 overflow-auto">
           <div className="relative lg:hidden w-full h-[50px] p-4">
             <button onClick={(() => setSidebar((prev) => !prev))} className="absolute right-0 mr-4">
-              <FaList size={24} className="text-white"/>
+              <HiClipboardDocumentList size={24} className="text-richblack-100" />
             </button>
           </div>
           <div className="mx-6">
