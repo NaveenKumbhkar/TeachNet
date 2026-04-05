@@ -45,12 +45,12 @@ export default function ViewCourse() {
     <>
       <div className="relative flex min-h-[calc(100vh-3.5rem)] mt-14">
         <VideoDetailsSidebar setReviewModal={setReviewModal} sidebar={sidebar} setSidebar={setSidebar} />
-        <div className="h-[calc(100vh-3.5rem)] w-full flex flex-col gap-4 overflow-auto">
-          <div className="relative lg:hidden w-full h-[50px] p-4">
+        <div className="h-[calc(100vh-0)] w-full flex flex-col gap-4 overflow-auto mt-10">
+          {/* <div className="relative lg:hidden w-full h-[50px] p-4">
             <button onClick={(() => setSidebar((prev) => !prev))} className="absolute right-0 mr-4">
               <HiClipboardDocumentList size={24} className="text-richblack-100" />
             </button>
-          </div>
+          </div> */}
           <div className="mx-6">
             <Outlet />
           </div>
