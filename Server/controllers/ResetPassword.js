@@ -32,7 +32,7 @@ exports.resetPasswordToken = async (req, res) => {
             { new: true });
 
         //create url
-        const url = `${process.env.BASE_URL}/update-password/${token}`;
+        const url = `${process.env.BASE_URL}/update-password/${token}`; // Frontend URL/update-password/token
 
         //send email containig the url
         await mailSender(email, "Password Reset Link", `Password Reset Link : ${url}`);
