@@ -1,6 +1,6 @@
-//const BASE_URL = "http://localhost:4000/api/v1";
-const BASE_URL = "https://teachnet-backend.onrender.com/api/v1";
-//const BASE_URL = "https://teachnet-ji73.onrender.com";
+//const BASE_URL = Backend url
+//const BASE_URL = Backend url
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const categories = {
     CATEGORIES_API : BASE_URL + "/course/showAllCategories",
