@@ -2,6 +2,7 @@ const User = require("../models/User");
 const mailSender = require("../utils/mailSender");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
+require("dotenv").config();
 
 //reset password token
 exports.resetPasswordToken = async (req, res) => {
@@ -12,7 +13,7 @@ exports.resetPasswordToken = async (req, res) => {
         //validation 
         const user = await User.findOne({ email: email });
         if (!user) {
-            return res.status(401).json({
+            return res.status(404).json({
                 success: false,
                 message: "Your email is not registerd with us",
             })
@@ -31,8 +32,7 @@ exports.resetPasswordToken = async (req, res) => {
             { new: true });
 
         //create url
-        //const url = `http://localhost:5173/update-password/${token}`;
-        const url = `https://teachnet-ji73.onrender.com/update-password/${token}`;
+        const url = `${process.env.BASE_URL}/update-password/${token}`; // Frontend URL/update-password/token
 
         //send email containig the url
         await mailSender(email, "Password Reset Link", `Password Reset Link : ${url}`);

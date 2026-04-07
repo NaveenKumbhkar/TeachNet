@@ -25,8 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        //origin:"http://localhost:5173",
-        origin:"https://teachnet-ji73.onrender.com",
+        origin: process.env.BASE_URL, // Frontend URL
         credentials:true,
     })
 )
