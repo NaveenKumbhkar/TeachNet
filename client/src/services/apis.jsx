@@ -1,10 +1,6 @@
 //const BASE_URL = Backend url
 //const BASE_URL = Backend url
-<<<<<<< HEAD
 const BASE_URL = import.meta.env.VITE_BASE_URL; // Backend URL/api/v1
-=======
-const BASE_URL = import.meta.env.VITE_BASE_URL; // Backend/api/v1
->>>>>>> 5e4b598b1a2b40aea2a803d9f56834ec6e0de871
 
 export const categories = {
     CATEGORIES_API : BASE_URL + "/course/showAllCategories",
