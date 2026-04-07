@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm"
 import SignUpForm from "./SignUpForm"
 const Template = ({title,description,description2,image,formType}) => {
     return(
-        <div className="text-richblack-5 lg:pt-10 flex items-center justify-center">
+        <div className="text-richblack-5 lg:pt-10 mt-10 flex items-center justify-center">
             <div className="mx-auto flex w-11/12 max-w-maxContent flex-col-reverse justify-between gap-y-12 py-12 md:flex-row md:gap-y-0 md:gap-x-12">
                 <div className="w-11/12 mx-auto max-w-[450px] flex flex-col gap-2 md:mx-0">
                     <h1 className="text-4xl font-semibold">{title}</h1>
