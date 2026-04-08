@@ -21,7 +21,7 @@ const CourseCard = ({courseData , currentCard , setCurrentCard}) =>{
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                     <ImTree/>
-                    {courseData?.lessionNumber} Lession
+                    {courseData?.lessionNumber} Lesson
                 </div>
             </div>
         </div>

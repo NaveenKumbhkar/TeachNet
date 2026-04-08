@@ -21,7 +21,8 @@ const Footer = () => {
                                     ["About", "Careers", "Affiliates"].map((ele, i) => {
                                         return (
                                             <div key={i} className="hover:text-richblack-50 transition-all duration-200">
-                                                <Link to={ele.toLowerCase()}>{ele}</Link>
+                                                {/* <Link to={ele.toLowerCase()}>{ele}</Link> */}
+                                                <Link to="/">{ele}</Link>
                                             </div>
                                         )
                                     })
@@ -41,7 +42,8 @@ const Footer = () => {
                                     resources.map((ele, i) => {
                                         return (
                                             <div key={i} className="hover:text-richblack-50 transition-all duration-200">
-                                                <Link to={ele.split(" ").join("-").toLowerCase()}>{ele}</Link>
+                                                {/* <Link to={ele.split(" ").join("-").toLowerCase()}>{ele}</Link> */}
+                                                <Link to="/">{ele}</Link>
                                             </div>
                                         )
                                     })
@@ -49,7 +51,8 @@ const Footer = () => {
                             </div>
                             <h1 className="text-richblack-50 font-semibold text-[16px] mt-7">Support</h1>
                             <div className="text-sm mt-2 text-richblack-400 hover:text-richblack-50 transition-all duration-200">
-                                <Link to={"/help-center"}>Help Center</Link>
+                                {/* <Link to={"/help-center"}>Help Center</Link> */}
+                                <Link to={"/"}>Help Center</Link>
                             </div>
                         </div>
                         <div className="w-[48%] lg:w-[30%] mb-7 lg:pl-0">
@@ -59,7 +62,8 @@ const Footer = () => {
                                     ["Paid memberships", "For students", "Business solutions"].map((ele, i) => {
                                         return (
                                             <div key={i} className="hover:text-richblack-50 transition-all duration-200">
-                                                <Link to={ele.split(" ").join("-").toLowerCase()}>{ele}</Link>
+                                                {/* <Link to={ele.split(" ").join("-").toLowerCase()}>{ele}</Link> */}
+                                                <Link to={"/"}>{ele}</Link>
                                             </div>
                                         )
                                     })
@@ -71,7 +75,8 @@ const Footer = () => {
                                     ["Forums", "Chapters", "Events"].map((ele, i) => {
                                         return (
                                             <div key={i} className="hover:text-richblack-50 transition-all duration-200">
-                                                <Link to={ele.split(" ").join("-").toLowerCase()}>{ele}</Link>
+                                                {/* <Link to={ele.split(" ").join("-").toLowerCase()}>{ele}</Link> */}
+                                                <Link to={"/"}>{ele}</Link>
                                             </div>
                                         )
                                     })
@@ -93,7 +98,8 @@ const Footer = () => {
                                                     key={index}
                                                     className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
                                                 >
-                                                    <Link to={link.link}>{link.title}</Link>
+                                                    {/* <Link to={link.link}>{link.title}</Link> */}
+                                                    <Link to={"/"}>{link.title}</Link>
                                                 </div>
                                             );
                                         })}

@@ -116,7 +116,7 @@ const UpdatePassword = () => {
                         className="bg-richblack-700 py-2 px-5 rounded-md text-richblack-50 cursor-pointer">
                         Cancel
                     </button>
-                    <IconBtn text="Updata" type="submit" />
+                    <IconBtn text="Update" type="submit" />
                 </div>
             </form>
         </div>

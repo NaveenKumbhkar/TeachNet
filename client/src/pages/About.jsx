@@ -101,7 +101,7 @@ const About = () => {
                         </div>
                         <div className="flex flex-col my-12 gap-10 lg:w-[40%]">
                             <h1 className="text-4xl font-semibold bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] bg-clip-text text-transparent lg:w-[70%]">
-                                Our Mision
+                                Our Mission
                             </h1>
                             <p className="text-base font-medium text-richblack-300 lg:w-[95%]">
                                 Our mission goes beyond just delivering courses online. We wanted to create a vibrant 
